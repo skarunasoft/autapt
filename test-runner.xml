@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="Aptem" verbose="3" parallel="none" thread-count="0">
+  
+  
+  <test name="AptemAutomation-TenantLevelVerifications" preserve-order="true">
+		<classes>
+			<class name="com.aptem.tests.TenantLevelTest">
+				<methods>
+					<include
+						name="disableComplianceDocumentsAtTenantLevel">
+						<parameter name="testcaseid" value="001" />
+					</include>
+					<include
+						name="disableComplianceDocumentsAtTenantLevel2">
+						<parameter name="testcaseid" value="002" />
+					</include>
+				</methods>
+			</class>
+		</classes>
+	</test>
+</suite> 
