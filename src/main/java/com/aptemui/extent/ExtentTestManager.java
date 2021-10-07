@@ -281,4 +281,34 @@ public class ExtentTestManager{
 				e.printStackTrace();
 			}
 		}	
+	    
+	    
+	    
+	    
+	    /**
+	     * 
+	     * @param status
+	     * @param element
+	     * @param description
+	     */
+	    public static synchronized void screeshortForFinalVerification(String status, Object element, String description){
+			try {
+				if(status.equalsIgnoreCase("pass")) {
+					ExtentTestManager.getTest().log(Status.PASS, "["+element+"] - <span style='color:green'>"+StringUtils.capitalize(description)+"</span>"+" [browser thread-id: "+Thread.currentThread().getId()+"]");
+					ExtentTestManager.getTest().pass("screenshot", MediaEntityBuilder.createScreenCaptureFromBase64String(getBase64Screenshot()).build());
+					
+				}
+				
+			} catch (Exception e) {
+					ExtentTestManager.getTest().log(Status.INFO, "verification is not done successfully: "+ "Object Name :" +element +"Description : "+description);
+			}
+		}	
+	    
+	    
+	    
+	    
+	    
+	    
+	    
+	    
 }

@@ -7,6 +7,7 @@ import org.openqa.selenium.support.PageFactory;
 import org.testng.Assert;
 
 import com.aptemui.base.ActionMethods;
+import com.aptemui.extent.ExtentTestManager;
 
 
 public class SignInPageObject extends ActionMethods{
@@ -66,9 +67,10 @@ public class SignInPageObject extends ActionMethods{
 	@FindBy(xpath="//div[text()='Compliance documents']/../input[@data-checked='true']")
 	private WebElement complianceDocumentsIsDisplayed;
 	
-	@FindBy(xpath="//div[text()='Compliance documents']/../input[@data-checked='true']/..")
+	@FindBy(xpath="//input[@id='ComplianceDocumentsProgramPart_Part_IsIncluded']/..")
 	private WebElement complianceDocumentsClick;
 	
+		
 	@FindBy(css="#ecompliance-documents-editor > div.header > div.toggle > label")
 	private WebElement enabledButton;
 	
@@ -168,14 +170,14 @@ public class SignInPageObject extends ActionMethods{
 		return new SignInPageObject(driver);
 	}
 	
-	public SignInPageObject clickTenantURLLink(String tenantName)
+	public SignInPageObject clickTenantURLLink(String tenantName, String disableORenable)
 	{
 		
 		WebElement url =waitAndReturnElementPresentByXPath("//a[contains(text(), '"+tenantName+".test.aptem.co.uk')]");
 		
 		Assert.assertEquals(true,
 				verifyNewTabWindowOfClickAndVerifyElement(
-						"disable",
+						disableORenable,
 						url,
 						testLearner1Link,
 						toggelTiles,
@@ -216,6 +218,7 @@ public class SignInPageObject extends ActionMethods{
 	public SignInPageObject verifyContent(String content)
 	{
 		Assert.assertEquals(true, waitForElementVisibleByXPath("(//*[text()[normalize-space()='"+content+"']])[2]"));
+		ExtentTestManager.screeshortForFinalVerification("pass", content,  " is displayed and verified successfully");
 		return new SignInPageObject(driver);
 	}
 	

@@ -413,7 +413,7 @@ public class ActionMethods{
 	 * @return
 	 */
 	public boolean verifyNewTabWindowOfClickAndVerifyElement(
-			String disableComplianceDocuments,
+			String disableORenableComplianceDocuments,
 			WebElement url,
 			WebElement testLearner,
 			WebElement toggelTiles,
@@ -444,14 +444,12 @@ public class ActionMethods{
 				Assert.assertEquals(true,click(editPencilIcon));
 				
 				
-				if(disableComplianceDocuments.equalsIgnoreCase("disable"))
+				if(disableORenableComplianceDocuments.equalsIgnoreCase("disable"))
 				{
 					
-					System.out.println("comp1 ");
+					ExtentTestManager.logEventToReport("pass", "requested Compliance Documents:",  "disable");
 					if(verifyElementIsDisplayedORNot(complianceDocumentsIsDisplayed)==true)
 					{
-						System.out.println("comp3 ");
-						System.out.println("comp2 ");
 						Assert.assertEquals(true,click(complianceDocuments));
 						Assert.assertEquals(true,click(enabledButton));
 						Assert.assertEquals(true,click(confirmButtonForComplianceDocuments));
@@ -468,6 +466,29 @@ public class ActionMethods{
 					}
 				
 				}
+				if(disableORenableComplianceDocuments.equalsIgnoreCase("enable"))
+				{
+					ExtentTestManager.logEventToReport("pass", "requested Compliance Documents:",  "disable");
+					if(verifyElementIsDisplayedORNot(complianceDocumentsIsDisplayed)==false)
+					{
+						Assert.assertEquals(true,click(complianceDocuments));
+						Assert.assertEquals(true,click(enabledButton));
+						Assert.assertEquals(true,click(confirmButtonForComplianceDocuments));
+						Assert.assertEquals(true,click(confirmButton));
+						ExtentTestManager.logEventToReport("pass", "Compliance document is enabled now",  ""+Thread.currentThread().getId());
+					
+						
+					}
+					else if(verifyElementIsDisplayedORNot(complianceDocumentsIsDisplayed)==true)
+					{
+						
+						ExtentTestManager.logEventToReport("pass", "Compliance document is enabled already",  ""+Thread.currentThread().getId());
+					
+					}
+				
+				}
+				
+				
 				
 				
 				

@@ -4,7 +4,6 @@ package com.aptem.tests;
 import org.testng.annotations.Test;
 
 import com.aptemui.base.BaseDriver;
-import com.aptemui.extent.ExtentTestManager;
 import com.aptemui.utils.ResourceHandler;
 
 public class TenantLevelTest extends BaseDriver{
@@ -26,7 +25,7 @@ public class TenantLevelTest extends BaseDriver{
 		  .clickSignInButton()
 		  .searchTenant("laxmi")
 		  .clickTenantSearchButton()
-		  .clickTenantURLLink("laxmi") 
+		  .clickTenantURLLink("laxmi", "disable") 
 		  .navigateToLearnersAccount(ResourceHandler.getPropValue("learner_url"))
 		  .signInLearnerAccount(
 				  ResourceHandler.getPropValue("learner_username"),
@@ -43,7 +42,7 @@ public class TenantLevelTest extends BaseDriver{
 	}
 	
 	@Test
-	public void disableComplianceDocumentsAtTenantLevel2() {
+	public void enableComplianceDocumentsAtTenantLevel() {
 		
 		signInPageObject.enterUsername(ResourceHandler.getPropValue("app_username"))		
 		  .clickNext()
@@ -54,17 +53,18 @@ public class TenantLevelTest extends BaseDriver{
 		  .clickSignInButton()
 		  .searchTenant("laxmi")
 		  .clickTenantSearchButton()
-		  .clickTenantURLLink("laxmi");
-		 
-		
-		
-		
-		
-		
+		  .clickTenantURLLink("laxmi", "enable") 
+		  .navigateToLearnersAccount(ResourceHandler.getPropValue("learner_url"))
+		  .signInLearnerAccount(
+				  ResourceHandler.getPropValue("learner_username"),
+				  ResourceHandler.getPropValue("learner_password")
+				  )
+		  .clickSideMenuAndLearningPlan()
+		  .verifyContent("Learning Plan")
+		  ;
+	
+	
 	}
-	
-	
-	
 	
 
 }
