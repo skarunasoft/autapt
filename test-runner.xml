@@ -11,10 +11,10 @@
 						name="disableComplianceDocumentsAtTenantLevel">
 						<parameter name="testcaseid" value="001" />
 					</include>
-					<include
+					<!-- <include
 						name="disableComplianceDocumentsAtTenantLevel2">
 						<parameter name="testcaseid" value="002" />
-					</include>
+					</include> -->
 				</methods>
 			</class>
 		</classes>

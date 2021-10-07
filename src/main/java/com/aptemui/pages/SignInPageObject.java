@@ -1,6 +1,5 @@
 package com.aptemui.pages;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -8,7 +7,6 @@ import org.openqa.selenium.support.PageFactory;
 import org.testng.Assert;
 
 import com.aptemui.base.ActionMethods;
-import com.aptemui.base.BaseDriver;
 
 
 public class SignInPageObject extends ActionMethods{
@@ -85,7 +83,7 @@ public class SignInPageObject extends ActionMethods{
 	
 	/**
 	 * @learner account properties
-	 * r
+	 * 
 	 */
 	
 	@FindBy(id="userName")
@@ -99,7 +97,11 @@ public class SignInPageObject extends ActionMethods{
 	
 	
 	
+	@FindBy(css="#menu-learner>nav")
+	private WebElement sideMenu;
 	
+	@FindBy(xpath="//*[text()='Learning Plan']/../..")
+	private WebElement learningPlanLink;
 	
 	
 	
@@ -205,7 +207,17 @@ public class SignInPageObject extends ActionMethods{
 	}
 	
 	
-	
+	public SignInPageObject clickSideMenuAndLearningPlan()
+	{
+		Assert.assertEquals(true, mouseOverandClick(sideMenu, learningPlanLink));
+		return new SignInPageObject(driver);
+	}
+		
+	public SignInPageObject verifyContent(String content)
+	{
+		Assert.assertEquals(true, waitForElementVisibleByXPath("(//*[text()[normalize-space()='"+content+"']])[2]"));
+		return new SignInPageObject(driver);
+	}
 	
 	
 }

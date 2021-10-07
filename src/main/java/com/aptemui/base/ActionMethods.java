@@ -443,26 +443,27 @@ public class ActionMethods{
 				Assert.assertEquals(true,click(programmes));
 				Assert.assertEquals(true,click(editPencilIcon));
 				
+				
 				if(disableComplianceDocuments.equalsIgnoreCase("disable"))
 				{
 					
-				
-					if(complianceDocumentsIsDisplayed.isDisplayed()==true)
+					System.out.println("comp1 ");
+					if(verifyElementIsDisplayedORNot(complianceDocumentsIsDisplayed)==true)
 					{
+						System.out.println("comp3 ");
+						System.out.println("comp2 ");
 						Assert.assertEquals(true,click(complianceDocuments));
 						Assert.assertEquals(true,click(enabledButton));
 						Assert.assertEquals(true,click(confirmButtonForComplianceDocuments));
 						Assert.assertEquals(true,click(confirmButton));
 						ExtentTestManager.logEventToReport("pass", "Compliance document is disabled now",  ""+Thread.currentThread().getId());
+					
 						
-					
 					}
-					else
+					else if(verifyElementIsDisplayedORNot(complianceDocumentsIsDisplayed)==false)
 					{
-					
+						
 						ExtentTestManager.logEventToReport("pass", "Compliance document is disabled already",  ""+Thread.currentThread().getId());
-					
-					
 					
 					}
 				
@@ -605,7 +606,7 @@ public class ActionMethods{
  * @return
  * @throws Exception
  */
-	public boolean mouseOverandClick(WebElement element1, WebElement element2) throws Exception {
+	public boolean mouseOverandClick(WebElement element1, WebElement element2) {
 		boolean flag = false;
 		try {
 			waitForElementVisible(element1);
@@ -823,6 +824,46 @@ public  static String getRandomNumbers() {
 	return saltStr;
 
 }
+
+
+protected boolean verifyElementIsDisplayedORNot(WebElement element) {
+	boolean flag=false;
+	try
+	{
+		 element.isDisplayed();
+		 flag=true;
+		 ExtentTestManager.logEventToReport("Pass", element, " is displayed");
+	
+	}
+	catch(NoSuchElementException e) {
+		flag=false;
+		ExtentTestManager.logEventToReport("Pass", element, " is not displayed");
+	}
+		
+	return flag;
+	
+}
+
+
+
+protected boolean verifyElementIsDisplayedORNot(List<WebElement> elements) {
+	boolean flag=false;
+	
+	if(elements.size() >=1) {
+		flag=true;
+	}
+	
+	else {
+	flag=false;
+	
+}
+return flag;
+}
+
+
+
+
+
 
 	
 }

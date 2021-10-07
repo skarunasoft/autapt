@@ -32,6 +32,8 @@ public class TenantLevelTest extends BaseDriver{
 				  ResourceHandler.getPropValue("learner_username"),
 				  ResourceHandler.getPropValue("learner_password")
 				  )
+		  .clickSideMenuAndLearningPlan()
+		  .verifyContent("Learning Plan")
 		  ;
 		 
 		

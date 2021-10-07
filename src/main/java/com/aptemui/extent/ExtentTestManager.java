@@ -9,12 +9,16 @@ import java.util.Map;
 import javax.imageio.ImageIO;
 
 import org.apache.commons.lang3.StringUtils;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 
+import com.aptemui.base.WebDriverHandler;
 import com.aventstack.extentreports.ExtentReports;
 import com.aventstack.extentreports.ExtentTest;
+import com.aventstack.extentreports.MediaEntityBuilder;
 import com.aventstack.extentreports.Status;
-
+import com.aventstack.extentreports.markuputils.Markup;
 
 import ru.yandex.qatools.ashot.AShot;
 import ru.yandex.qatools.ashot.Screenshot;
@@ -234,6 +238,15 @@ public class ExtentTestManager{
 			}
 				return "data:image/png;base64,"+image;
 		}
+	    
+	    
+	    
+	    public static String getBase64Screenshot() 
+	    {
+	    	return ((TakesScreenshot)WebDriverHandler.getInstance().getDriver()).getScreenshotAs(OutputType.BASE64);
+	    }
+	    
+	    
 	    /**
 	     * 
 	     * @param status
@@ -247,11 +260,13 @@ public class ExtentTestManager{
 				}
 				else if(status.equalsIgnoreCase("fail")) {
 					ExtentTestManager.getTest().log(Status.FAIL, "["+element+"] - <span style='color:red'>"+StringUtils.capitalize(description)+"</span>"+" [browser thread-id: "+Thread.currentThread().getId()+"]");
-					ExtentTestManager.getTest().log(Status.INFO, ExtentTestManager.getTest().addScreenCaptureFromBase64String(description+"./reports/image.png").toString());
+					ExtentTestManager.getTest().fail("screenshot", MediaEntityBuilder.createScreenCaptureFromBase64String(getBase64Screenshot()).build());
+					//ExtentTestManager.getTest().log(Status.INFO, ExtentTestManager.getTest().addScreenCaptureFromBase64String(description).toString());
 				}
 				else if(status.equalsIgnoreCase("error")) {
 					ExtentTestManager.getTest().log(Status.ERROR, description);
-					ExtentTestManager.getTest().log(Status.INFO, ExtentTestManager.getTest().addScreenCaptureFromBase64String(description+"./reports/image.png").toString());
+					ExtentTestManager.getTest().error("screenshot", MediaEntityBuilder.createScreenCaptureFromBase64String(getBase64Screenshot()).build());
+					//ExtentTestManager.getTest().log(Status.INFO, ExtentTestManager.getTest().addScreenCaptureFromBase64String(description).toString());
 					
 				}
 			} catch (Exception e) {
