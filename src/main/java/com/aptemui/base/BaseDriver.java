@@ -143,7 +143,7 @@ public class BaseDriver {
 	@Parameters({"testcaseid"})
 	public synchronized void setUpBrowser(String testcaseid) throws IOException {
 		System.out.println("Aptem automation testcase id: "+testcaseid+"is running");
-		ExtentTestManager.startTest("Aptem automation testcase id "+testcaseid+"is running");
+		ExtentTestManager.startTest("Aptem automation testcase id: "+testcaseid);
 		WebDriverHandler.getInstance();
 		WebDriverHandler.setDriver(createBrowserInstance(ResourceHandler.getPropValue("run_mode"), ResourceHandler.getPropValue("browser")));
 		driver = WebDriverHandler.getInstance().getDriver();

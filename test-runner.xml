@@ -7,13 +7,17 @@
 		<classes>
 			<class name="com.aptem.tests.TenantLevelTest">
 				<methods>
-					<include
+					<!-- <include
 						name="disableComplianceDocumentsAtTenantLevel">
 						<parameter name="testcaseid" value="001" />
 					</include>
 					 <include
 						name="enableComplianceDocumentsAtTenantLevel">
 						<parameter name="testcaseid" value="002" />
+					</include>  -->
+					 <include
+						name="addDocumentsToTheLearnersProgramme">
+						<parameter name="testcaseid" value="003" />
 					</include> 
 				</methods>
 			</class>
