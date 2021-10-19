@@ -19,7 +19,7 @@ public class SignInPageObject extends ActionMethods{
 	private WebElement username;
 	
 	
-	@FindBy(id="enterLogin")
+	@FindBy(id="enterLogins")
 	private WebElement nextButton;
 	
 	

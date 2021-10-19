@@ -27,6 +27,7 @@ import org.testng.xml.XmlSuite;
 import com.aptemui.extent.ExtentManager;
 import com.aptemui.extent.ExtentTestManager;
 import com.aptemui.pages.SignInPageObject;
+import com.aptemui.testrail.TestRailResultsManager;
 import com.aptemui.utils.FileProvider;
 import com.aptemui.utils.ResourceHandler;
 import com.aventstack.extentreports.Status;
@@ -41,6 +42,8 @@ public class BaseDriver {
 	private ImmutableCapabilities capabilities = null;
 	public SignInPageObject signInPageObject;
 	public static XmlSuite suite;
+	private String testcaseid;
+	TestRailResultsManager testResultUpdates = new TestRailResultsManager();
 	/**
 	 * 
 	 * @param runMode
@@ -142,9 +145,9 @@ public class BaseDriver {
 	@BeforeMethod
 	@Parameters({"testcaseid"})
 	public synchronized void setUpBrowser(String testcaseid) throws IOException {
+		this.testcaseid = testcaseid;
 		System.out.println("Aptem automation testcase id: "+testcaseid+"is running");
 		ExtentTestManager.startTest("Aptem automation testcase id: "+testcaseid);
-		WebDriverHandler.getInstance();
 		WebDriverHandler.setDriver(createBrowserInstance(ResourceHandler.getPropValue("run_mode"), ResourceHandler.getPropValue("browser")));
 		driver = WebDriverHandler.getInstance().getDriver();
 		//driver.manage().deleteAllCookies();
@@ -155,16 +158,36 @@ public class BaseDriver {
 	@AfterMethod
 	public void closeApplication(ITestResult result) throws Exception {
 		try {
+		
+			System.out.println("after method testcase id"+ testcaseid);
 			ExtentTestManager.getTest().log(Status.INFO, "<b>Browser is going to close</b>");
 			System.out.println("After quit  :" + WebDriverHandler.getInstance().getDriver().toString());
 			if (WebDriverHandler.getInstance().getDriver().toString().contains("null")) {
 				System.out.println("check browser ");
 				ExtentTestManager.getTest().log(Status.INFO, "<b>Browser is closed</b>");
 			}
-			//loginFlag = true;
+			
+			
 			WebDriverHandler.getInstance().closeBrowser();
 			ExtentTestManager.getTest().log(Status.INFO, "<b>After method is completed</b>");
 			ExtentManager.getReporter().flush();
+			
+			
+			if(result.getStatus()==ITestResult.SUCCESS) {
+				
+				System.out.println("pass" + testcaseid+"|status"+result.getStatus());
+				testResultUpdates.postResult(testcaseid, 1, "testcase is passed by automation");
+			}
+			else if(result.getStatus()==ITestResult.FAILURE) {
+				System.out.println("fail" + testcaseid+"|status"+result.getStatus());
+				testResultUpdates.postResult(testcaseid, 5, "testcase is failed by automation");
+			}
+			else if(result.getStatus()==ITestResult.SKIP) {
+				System.out.println("skip" + testcaseid+"|status"+result.getStatus());
+				testResultUpdates.postResult(testcaseid, 3, "testcase is Untested by automation");
+			}
+		
+			
 		}
 
 		catch (Exception e) {

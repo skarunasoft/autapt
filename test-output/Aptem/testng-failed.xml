@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite thread-count="1" guice-stage="DEVELOPMENT" verbose="3" name="Failed suite [Aptem]" parallel="methods">
+  <test thread-count="1" verbose="3" name="AptemAutomation-TenantLevelVerifications-1(failed)" parallel="methods">
+    <classes>
+      <class name="com.aptem.tests.TenantLevelTest">
+        <methods>
+          <include name="closeDriver"/>
+          <include name="setUpBrowser"/>
+          <include name="addDocumentsToTheLearnersProgramme">
+            <parameter name="testcaseid" value="003"/>
+          </include> <!-- addDocumentsToTheLearnersProgramme -->
+          <include name="enableComplianceDocumentsAtTenantLevel">
+            <parameter name="testcaseid" value="002"/>
+          </include> <!-- enableComplianceDocumentsAtTenantLevel -->
+          <include name="closeApplication"/>
+        </methods>
+      </class> <!-- com.aptem.tests.TenantLevelTest -->
+    </classes>
+  </test> <!-- AptemAutomation-TenantLevelVerifications-1(failed) -->
+</suite> <!-- Failed suite [Aptem] -->
