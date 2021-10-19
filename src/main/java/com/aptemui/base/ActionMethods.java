@@ -32,6 +32,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 
 import com.aptemui.extent.ExtentTestManager;
+import com.aptemui.pages.SignInPageObject;
 
 
 
@@ -125,9 +126,9 @@ public class ActionMethods{
 		boolean elementPresent = false;
 		try {
 			driverWait.until(ExpectedConditions.visibilityOf(element));
-			new WebDriverWait(driver, Duration.ofSeconds(60)).ignoring(StaleElementReferenceException.class)
+			new WebDriverWait(driver, Duration.ofSeconds(30)).ignoring(StaleElementReferenceException.class)
 					.ignoring(NoSuchElementException.class);
-			new WebDriverWait(driver, Duration.ofSeconds(60)).ignoring(InvalidElementStateException.class)
+			new WebDriverWait(driver, Duration.ofSeconds(30)).ignoring(InvalidElementStateException.class)
 					.ignoring(NoSuchElementException.class);
 			ExtentTestManager.logEventToReport("pass", element, "Element Visible and Stable");
 			elementPresent = true;
@@ -152,9 +153,9 @@ public class ActionMethods{
 		boolean elementPresent = false;
 		try {
 			driverWait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(xpath)));
-			new WebDriverWait(driver, Duration.ofSeconds(60)).ignoring(StaleElementReferenceException.class)
+			new WebDriverWait(driver, Duration.ofSeconds(30)).ignoring(StaleElementReferenceException.class)
 					.ignoring(NoSuchElementException.class);
-			new WebDriverWait(driver, Duration.ofSeconds(60)).ignoring(InvalidElementStateException.class)
+			new WebDriverWait(driver, Duration.ofSeconds(30)).ignoring(InvalidElementStateException.class)
 					.ignoring(NoSuchElementException.class);
 			ExtentTestManager.logEventToReport("pass", xpath, " XPath Found And Returned");
 			elementPresent = true;
@@ -176,9 +177,9 @@ public class ActionMethods{
 		boolean elementPresent = false;
 		try {
 			driverWait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath(xpath)));
-			new WebDriverWait(driver, Duration.ofSeconds(60)).ignoring(StaleElementReferenceException.class)
+			new WebDriverWait(driver, Duration.ofSeconds(30)).ignoring(StaleElementReferenceException.class)
 					.ignoring(NoSuchElementException.class);
-			new WebDriverWait(driver, Duration.ofSeconds(60)).ignoring(InvalidElementStateException.class)
+			new WebDriverWait(driver, Duration.ofSeconds(30)).ignoring(InvalidElementStateException.class)
 					.ignoring(NoSuchElementException.class);
 			ExtentTestManager.logEventToReport("pass", xpath, " XPath NOT Found");
 			elementPresent = true;
@@ -227,6 +228,27 @@ public class ActionMethods{
 			flag = true;
 		} catch (Exception e) {
 			ExtentTestManager.logEventToReport("error", element, e.getMessage() + Thread.currentThread().getId());
+			e.printStackTrace();	
+			}
+		return flag;
+	}
+	
+	/**
+	 * 
+	 * @param element
+	 * @return
+	 * @throws Exception
+	 */
+	public boolean scrollIntoDown() throws Exception {
+		boolean flag = false;
+		try {
+			Thread.sleep(2000);
+			((JavascriptExecutor) driver).executeScript("window.scrollBy(0,550)");
+			//((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", element);
+			ExtentTestManager.logEventToReport("pass", "", " element scrolled successfully");
+			flag = true;
+		} catch (Exception e) {
+			ExtentTestManager.logEventToReport("error", "", e.getMessage() + Thread.currentThread().getId());
 			e.printStackTrace();	
 			}
 		return flag;
@@ -361,7 +383,17 @@ public class ActionMethods{
 	return cssValue;
 	}
 	
-	
+	protected boolean triggerKeyEvent(WebElement element, Keys key) throws Exception {
+		boolean flag = true;
+		try {
+			action.moveToElement(element).sendKeys(key).build().perform();
+			ExtentTestManager.logEventToReport("pass", element, key + " Event Triggered");
+			flag = true;
+		} catch (Exception e) {
+			ExtentTestManager.logEventToReport("error", element, e.getMessage());
+		}
+		return flag;
+	}
 	
 	
 	/**
@@ -383,6 +415,44 @@ public class ActionMethods{
 			}
 		return flag;
 	}
+	
+	/**
+	 * 
+	 * @return
+	 */
+	public boolean refresh() {
+
+		boolean flag = false;
+		try {
+			driver.navigate().refresh();
+			ExtentTestManager.logEventToReport("pass", "Page refresh", " successfully");
+			flag = true;
+		} catch (Exception e) {
+			ExtentTestManager.logEventToReport("error", "Page refresh not successfully", e.getMessage() + Thread.currentThread().getId());
+			e.printStackTrace();
+			}
+		return flag;
+	}
+	
+	/**
+	 * 
+	 * @return
+	 */
+	public boolean navigateBack() {
+
+		boolean flag = false;
+		try {
+			driver.navigate().back();;
+			ExtentTestManager.logEventToReport("pass", "Page navigated back", " successfully");
+			flag = true;
+		} catch (Exception e) {
+			ExtentTestManager.logEventToReport("error", "Page navigated back not successfully", e.getMessage() + Thread.currentThread().getId());
+			e.printStackTrace();
+			}
+		return flag;
+	}
+	
+	
 	/**
 	 * 
 	 * @param element
@@ -506,6 +576,214 @@ public class ActionMethods{
 		}
 		return flag;
 	}
+	
+	
+	
+	
+	
+	
+	
+	
+	/**
+	 * 
+	 * @param element
+	 * @param verifyURL
+	 * @return
+	 */
+	public boolean verifyNewTabWindowOfClickAndVerifyElementForLearnerProgramme(
+			String disableORenableComplianceDocuments,
+			String name,
+			WebElement url,
+			WebElement testLearner,
+			WebElement toggelTiles,
+			WebElement programmes,
+			WebElement editPencilIcon,
+			WebElement editPencilIconForLearnerProgramme,
+			WebElement complianceDocumentsIsDisplayed,
+			WebElement complianceDocuments,
+			WebElement enabledButton,
+			WebElement confirmButtonForComplianceDocuments,
+			WebElement confirmButton,
+			WebElement add,
+			WebElement text,
+			WebElement templateSelectOne,
+			WebElement CommitmentStatement,
+			WebElement templateSelectTwo,
+			WebElement corndelApprenticeshipAgreement,
+			WebElement apply,
+			WebElement warningYesButton,
+			WebElement forDeleteComplianceDocument,
+			List<WebElement> deleteDocuments,
+			WebElement confirmYesDeleteDocuments
+			)
+	{
+		
+		System.out.println("request2"+ disableORenableComplianceDocuments);
+		boolean flag = false;
+		String newWindowURL=null;
+		String currentUrl=null;
+		try {
+			Assert.assertEquals(true, click(url));
+			List<String> browserTabs = new ArrayList<String>(driver.getWindowHandles());
+			currentUrl = driver.getCurrentUrl();
+			if (browserTabs.size() > 1) {
+				driver.switchTo().window(browserTabs.get(1));
+				newWindowURL = driver.getCurrentUrl();
+				ExtentTestManager.logEventToReport("pass", newWindowURL, " new url navigated successfully");
+				Assert.assertEquals(true,click(testLearner));
+				Assert.assertEquals(true,click(toggelTiles));
+				Assert.assertEquals(true,click(programmes));
+				Assert.assertEquals(true,click(editPencilIcon));
+				//System.out.println("request3"+ disableORenableComplianceDocuments);
+				
+				{
+					ExtentTestManager.logEventToReport("pass", "requested Compliance Documents:",  "enable");
+					if(verifyElementIsDisplayedORNot(complianceDocumentsIsDisplayed)==false)
+					{
+						ExtentTestManager.logEventToReport("pass", "Compliance document is disabled, Start to enable",  ""+Thread.currentThread().getId());
+						Assert.assertEquals(true,click(complianceDocuments));
+						Assert.assertEquals(true,click(enabledButton));
+						Thread.sleep(3000);
+						Assert.assertEquals(true,click(confirmButtonForComplianceDocuments));
+						Thread.sleep(6000);
+						Assert.assertEquals(true,click(confirmButton));
+						ExtentTestManager.logEventToReport("pass", "Compliance document is enabled now",  ""+Thread.currentThread().getId());
+					
+						
+					}
+					else if(verifyElementIsDisplayedORNot(complianceDocumentsIsDisplayed)==true)
+					{
+						Assert.assertEquals(true, navigateBack());
+						ExtentTestManager.logEventToReport("pass", "Compliance document is enabled already",  ""+Thread.currentThread().getId());
+					
+					}
+				
+				}
+				
+				Assert.assertEquals(true,click(editPencilIconForLearnerProgramme));
+				
+				if(disableORenableComplianceDocuments.equalsIgnoreCase("enable"))
+				{
+					ExtentTestManager.logEventToReport("pass", "requested Compliance Documents:",  "enable");
+					if(verifyElementIsDisplayedORNot(complianceDocumentsIsDisplayed)==false)
+					{
+						ExtentTestManager.logEventToReport("pass", "Compliance document is disabled, Start to enable",  ""+Thread.currentThread().getId());
+						Assert.assertEquals(true,click(complianceDocuments));
+						Assert.assertEquals(true,click(enabledButton));
+						Thread.sleep(3000);
+						Assert.assertEquals(true,click(confirmButtonForComplianceDocuments));
+						Thread.sleep(6000);
+						Assert.assertEquals(true,click(confirmButton));
+						
+						
+//						Assert.assertEquals(true,deleteAllComplianceDocuments(forDeleteComplianceDocument, deleteDocuments, confirmYesDeleteDocuments));
+//						Assert.assertEquals(true,click(add));
+//						 Assert.assertEquals(true,typeText(text, name));
+//						 Assert.assertEquals(true, triggerKeyEvent(text, Keys.TAB));
+//						 Assert.assertEquals(true,click(templateSelectOne));
+//						 Assert.assertEquals(true,click(CommitmentStatement));
+//						Assert.assertEquals(true,click(apply));
+//						
+//						
+//						Thread.sleep(3000);
+//						Assert.assertEquals(true,click(confirmButtonForComplianceDocuments));
+//						Thread.sleep(6000);
+//						Assert.assertEquals(true,click(confirmButton));
+//						Assert.assertEquals(true,click(warningYesButton));
+						ExtentTestManager.logEventToReport("pass", "Compliance document is enabled now",  ""+Thread.currentThread().getId());
+					
+						
+					}
+					else if(verifyElementIsDisplayedORNot(complianceDocumentsIsDisplayed)==true)
+					{
+						ExtentTestManager.logEventToReport("pass", "Compliance document is enabled already",  ""+Thread.currentThread().getId());
+//						Assert.assertEquals(true,click(complianceDocuments));
+//						Assert.assertEquals(true,deleteAllComplianceDocuments(forDeleteComplianceDocument, deleteDocuments, confirmYesDeleteDocuments));
+//						Assert.assertEquals(true,click(add));
+//						 Assert.assertEquals(true,typeText(text, name));
+//						 Assert.assertEquals(true, triggerKeyEvent(text, Keys.TAB));
+//						 Assert.assertEquals(true,click(templateSelectOne));
+//						 Assert.assertEquals(true,click(CommitmentStatement));
+//						Assert.assertEquals(true,click(apply));
+//						Thread.sleep(3000);
+//						Assert.assertEquals(true,click(confirmButtonForComplianceDocuments));
+//						Thread.sleep(6000);
+//						Assert.assertEquals(true,click(confirmButton));
+//						Assert.assertEquals(true,click(warningYesButton));
+						
+					
+					}
+				
+				}
+				
+				
+				
+				
+				
+				driver.close();
+				driver.switchTo().window(browserTabs.get(0));
+				flag=true;
+			}
+		} catch (Exception e) {
+			ExtentTestManager.logEventToReport("error", url, e.getMessage() + Thread.currentThread().getId());
+			ExtentTestManager.logEventToReport("error", newWindowURL, e.getMessage() + Thread.currentThread().getId());
+			e.printStackTrace();
+		} finally {
+			driver.switchTo().defaultContent();
+			ExtentTestManager.logEventToReport("pass", currentUrl, "default url navigated successfully");
+		}
+		return flag;
+	}
+	
+	
+	
+	public boolean deleteAllComplianceDocuments(WebElement forDeleteComplianceDocument, List<WebElement> deleteDocuments, WebElement confirmYesDeleteDocuments)
+	{
+		boolean flag=false;
+		try {
+			if(verifyElementIsDisplayedORNot(forDeleteComplianceDocument)==true) 
+			{
+				ExtentTestManager.logEventToReport("pass", forDeleteComplianceDocument, " presented");
+			for (WebElement deleteDoc : deleteDocuments) {
+				
+				Assert.assertEquals(true,click(deleteDoc));
+				Assert.assertEquals(true,click(confirmYesDeleteDocuments));
+			}
+			flag=true;
+			}
+			else {
+				flag=true;
+				ExtentTestManager.logEventToReport("pass", forDeleteComplianceDocument, " not presented presented");
+				
+			}
+		} catch (NoSuchElementException e) {
+			
+			e.printStackTrace();
+		}
+		
+		return flag;
+	}
+	
+	
+	
+	
+	public boolean switchToSignFrameWindow(WebElement frame, WebElement sign) throws Exception {
+		boolean flag = false;
+		try {
+			Thread.sleep(3000);
+			driver.switchTo().frame(frame);
+			Assert.assertEquals(true, click(sign));
+			driver.switchTo().defaultContent();
+			ExtentTestManager.logEventToReport("pass", frame, "Switch To frame successfully");
+			flag = true;
+		} catch (Exception e) {
+			ExtentTestManager.logEventToReport("error", frame, e.getMessage() + Thread.currentThread().getId());
+			e.printStackTrace();
+		}
+		return flag;
+	}
+	
+	
 	/**
 	 * 
 	 * @param drpObject
@@ -827,6 +1105,7 @@ public  static String getSaltString() {
 		salt.append(SALTCHARS.charAt(index));
 	}
 	String saltStr = salt.toString();
+	System.out.println("salt string: "+ saltStr);
 	return saltStr;
 
 }
@@ -867,19 +1146,16 @@ protected boolean verifyElementIsDisplayedORNot(WebElement element) {
 
 
 
-protected boolean verifyElementIsDisplayedORNot(List<WebElement> elements) {
-	boolean flag=false;
-	
-	if(elements.size() >=1) {
-		flag=true;
-	}
-	
-	else {
-	flag=false;
-	
-}
-return flag;
-}
+/*
+ * protected boolean verifyElementIsDisplayedORNot(List<WebElement> elements) {
+ * boolean flag=false;
+ * 
+ * if(elements.size() >=1) { flag=true; }
+ * 
+ * else { flag=false;
+ * 
+ * } return flag; }
+ */
 
 
 
