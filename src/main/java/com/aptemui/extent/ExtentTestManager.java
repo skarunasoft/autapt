@@ -256,7 +256,7 @@ public class ExtentTestManager{
 	    public static synchronized void logEventToReport(String status, Object element, String description){
 			try {
 				if(status.equalsIgnoreCase("pass")) {
-					ExtentTestManager.getTest().log(Status.PASS, "["+element.toString().replaceAll("ChromeDriver: chrome on WINDOWS", "")+"] - <span style='color:ForestGreen'>"+StringUtils.capitalize(description)+"</span>"+" [browser thread-id: "+Thread.currentThread().getId()+"]");
+					ExtentTestManager.getTest().log(Status.PASS, "["+"<span style='font-size:110%;color:OliveDrab;'>"+element.toString().replaceAll("ChromeDriver: chrome on WINDOWS", "")+"</span>"+"] - <span style='font-size:120%;color:blue;'>"+StringUtils.capitalize(description)+"</span>"+" [browser thread-id: "+Thread.currentThread().getId()+"]");
 				}
 				else if(status.equalsIgnoreCase("fail")) {
 					ExtentTestManager.getTest().log(Status.FAIL, "["+element+"] - <span style='color:red'>"+StringUtils.capitalize(description)+"</span>"+" [browser thread-id: "+Thread.currentThread().getId()+"]");
