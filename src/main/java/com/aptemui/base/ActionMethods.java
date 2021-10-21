@@ -135,9 +135,7 @@ public class ActionMethods{
 		} catch (Exception e) {
 			ExtentTestManager.logEventToReport("error", element, e.getMessage() + Thread.currentThread().getId());
 			e.printStackTrace();
-		} finally {
-			// Thread.sleep(2000);
-		}
+		} 
 		return elementPresent;
 	}
 	
@@ -162,8 +160,7 @@ public class ActionMethods{
 		} catch (Exception e) {
 			ExtentTestManager.logEventToReport("error", xpath, e.getMessage() + Thread.currentThread().getId());
 			e.printStackTrace();
-		} finally {
-		}
+		} 
 		return elementPresent;
 	}
 	
@@ -186,8 +183,7 @@ public class ActionMethods{
 		} catch (Exception e) {
 			ExtentTestManager.logEventToReport("error", xpath, e.getMessage() + Thread.currentThread().getId());
 			e.printStackTrace();
-		} finally {
-		}
+		} 
 		return elementPresent;
 	}
 
@@ -872,9 +868,7 @@ public class ActionMethods{
 		} catch (Exception e) {
 			ExtentTestManager.logEventToReport("error", element, e.getMessage() + Thread.currentThread().getId());
 			e.printStackTrace();
-		} finally {
-		//	Thread.sleep(6000);
-		}
+		} 
 		return flag;
 	}
 	

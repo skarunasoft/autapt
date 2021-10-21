@@ -11,29 +11,14 @@ import java.sql.Statement;
 public class ExecuteQuery {
 	
 	
-
-	public static void runquery() {
-		String host = "jdbc:sqlserver://uks-asql-mws-server-test.database.windows.net";
-		String u = "laxmimaddali";
-		String p = "kelNEBUxebr1";
-		
-		try {
-			Connection connection = DriverManager.getConnection(host, u, p);
-			Statement statement = connection.createStatement();
-			System.out.println("db test: "+statement.getConnection());
-			//statement.getConnection();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		
-		
-		
-	}
-	
-	
-	
-	
-	protected static ResultSet executeQueryAndReturnData(String query) throws Exception {
+/**
+ * 
+ * @param query
+ * @return
+ * @throws Exception
+ */
+	protected static boolean executeQueryAndReturnData(String query) throws Exception {
+		boolean flag = false;
 		ResultSet rs = null;
 		Connection connection = null;
 		try {
@@ -50,29 +35,30 @@ public class ExecuteQuery {
 			Thread.sleep(10000);
 			rs = stmt.executeQuery(query);
 			System.out.println("execution result: "+ rs);
+			flag = true;
 			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return rs;
+		return flag;
 		
 	}
 	
-	public static void read() throws Exception {
-		ResultSet rs = null;
+	public static void runQuery() throws Exception {
+		boolean status;
 		
-		rs = executeQueryAndReturnData("update s set SignerId=null, SignerPosition=null" + 
+		status=executeQueryAndReturnData("update s set SignerId=null, SignerPosition=null" + 
 				"                from Orchard_Users_UserPartRecord" + 
 				"                 join WA_Pdf_Signature s on u.id=s.EntityId" + 
 				"                 where username='laxmiaptemautomation+1@gmail.com' and type in ('ApprenticeshipAgreement','Corndel-CommitmentStatement')");
 		
-
+		System.out.println("execution status: "+ status);
 
 	}
 
 	public static void main(String[] args) throws Exception {
-		//read();
-		runquery();
+		
+		runQuery();
 	}
 
 }

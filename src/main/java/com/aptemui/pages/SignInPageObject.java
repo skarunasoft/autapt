@@ -19,7 +19,7 @@ public class SignInPageObject extends ActionMethods{
 	private WebElement username;
 	
 	
-	@FindBy(id="enterLogins")
+	@FindBy(id="enterLogin")
 	private WebElement nextButton;
 	
 	
@@ -373,8 +373,23 @@ public class SignInPageObject extends ActionMethods{
 	
 	public SignInPageObject verifyContent(String content)
 	{
-		Assert.assertEquals(true, waitForElementVisibleByXPath("(//*[text()[normalize-space()='"+content+"']])[2]"));
-		ExtentTestManager.screeshortForFinalVerification("pass", content,  " is displayed and verified successfully");
+		
+		boolean flag = waitForElementVisibleByXPath("(//*[text()[normalize-space()='"+content+"']])[2]");
+		Assert.assertEquals(true, flag);
+		
+		if(flag==true) {
+			Assert.assertEquals(true, flag);
+			ExtentTestManager.screeshortForFinalVerification("pass", content,  " is displayed and verified successfully");
+			
+		}
+		else {
+			Assert.assertEquals(true, flag);
+			ExtentTestManager.screeshortForFinalVerification("fail", content,  " is displayed and verified successfully");
+			
+			
+		}
+		
+		
 		return new SignInPageObject(driver);
 	}
 	
