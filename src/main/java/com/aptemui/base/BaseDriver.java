@@ -146,11 +146,12 @@ public class BaseDriver {
 	@Parameters({"testcaseid"})
 	public synchronized void setUpBrowser(String testcaseid) throws IOException {
 		this.testcaseid = testcaseid;
-		System.out.println("Aptem automation testcase id: "+testcaseid+"is running");
+		System.out.println("Aptem automation testcase id: "+testcaseid+" is running...");
 		ExtentTestManager.startTest("Aptem automation testcase id: "+testcaseid);
 		WebDriverHandler.setDriver(createBrowserInstance(ResourceHandler.getPropValue("run_mode"), ResourceHandler.getPropValue("browser")));
 		driver = WebDriverHandler.getInstance().getDriver();
 		//driver.manage().deleteAllCookies();
+		driver.manage().window().maximize();
 		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
 		driver.get(ResourceHandler.getPropValue("app_url"));
 		signInPageObject = new SignInPageObject(driver);
@@ -159,19 +160,6 @@ public class BaseDriver {
 	public void closeApplication(ITestResult result) throws Exception {
 		try {
 		
-			System.out.println("after method testcase id"+ testcaseid);
-			ExtentTestManager.getTest().log(Status.INFO, "<b>Browser is going to close</b>");
-			System.out.println("After quit  :" + WebDriverHandler.getInstance().getDriver().toString());
-			if (WebDriverHandler.getInstance().getDriver().toString().contains("null")) {
-				System.out.println("check browser ");
-				ExtentTestManager.getTest().log(Status.INFO, "<b>Browser is closed</b>");
-			}
-			
-			
-			WebDriverHandler.getInstance().closeBrowser();
-			ExtentTestManager.getTest().log(Status.INFO, "<b>After method is completed</b>");
-			ExtentManager.getReporter().flush();
-			
 			
 			if(result.getStatus()==ITestResult.SUCCESS) {
 				
@@ -187,6 +175,22 @@ public class BaseDriver {
 				testResultUpdates.postResult(testcaseid, 3, "testcase is Untested by automation");
 			}
 		
+			
+			System.out.println("after method testcase id"+ testcaseid);
+			ExtentTestManager.getTest().log(Status.INFO, "<b>Browser is going to close</b>");
+			System.out.println("After quit  :" + WebDriverHandler.getInstance().getDriver().toString());
+			if (WebDriverHandler.getInstance().getDriver().toString().contains("null")) {
+				System.out.println("check browser ");
+				ExtentTestManager.getTest().log(Status.INFO, "<b>Browser is closed</b>");
+			}
+			
+			
+			WebDriverHandler.getInstance().closeBrowser();
+			ExtentTestManager.getTest().log(Status.INFO, "<b>After method is completed</b>");
+			ExtentManager.getReporter().flush();
+			
+			
+			
 			
 		}
 
