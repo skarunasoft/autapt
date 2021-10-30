@@ -11,6 +11,7 @@ import org.testng.Assert;
 
 import com.aptemui.base.ActionMethods;
 import com.aptemui.extent.ExtentTestManager;
+import com.aptemui.utils.ExecuteQuery;
 
 
 public class SignInPageObject extends ActionMethods{
@@ -28,6 +29,9 @@ public class SignInPageObject extends ActionMethods{
 	
 	@FindBy(xpath="//li[text()='Default']")
 	private WebElement defaulTenant;
+	
+	@FindBy(xpath="//li[text()='laxmi']")
+	private WebElement laxmiTenant;
 	
 	@FindBy(id="tenantSelected")
 	private WebElement tenantSelectedNextButton;
@@ -81,12 +85,10 @@ public class SignInPageObject extends ActionMethods{
 	@FindBy(css="#ecompliance-documents-editor > div.header > div.toggle > label")
 	private WebElement enabledButton;
 	
-	//ori-@FindBy(css="#ecompliance-documents-editor > div.bottom > div.confirmBtn.btn.clear-fix")
 	@FindBy(xpath="//*[@id='ecompliance-documents-editor']/div[3]/div[@data-role='but-ok']")
 	private WebElement confirmButtonForComplianceDocuments;
 	
 	
-	//ori-@FindBy(css="#workspace > form > div.mainButtons > input.confirmBtn.btn")
 	@FindBy(xpath="//input[@value='Confirm']")
 	private WebElement confirmButton;
 	
@@ -230,6 +232,14 @@ public class SignInPageObject extends ActionMethods{
 		return new SignInPageObject(driver);
 	}
 	
+	public SignInPageObject clickLaxmiTenant()
+	{
+		Assert.assertEquals(true,click(laxmiTenant));
+		return new SignInPageObject(driver);
+	}
+	
+
+	
 	public SignInPageObject clickNextAfterSelectedTenant()
 	{
 		Assert.assertEquals(true,click(tenantSelectedNextButton));
@@ -369,6 +379,14 @@ public class SignInPageObject extends ActionMethods{
 	}
 	
 	
+	@FindBy(xpath="(//*[text()='Signatures Required']/../..)[1]")
+	private WebElement signatureRequired;
+	public SignInPageObject clickSignaturesRequired()
+	{
+		waitFor("10");
+		Assert.assertEquals(true,click(signatureRequired));
+		return new SignInPageObject(driver);
+	}
 	
 	
 	public SignInPageObject verifyContent(String content)
@@ -419,8 +437,7 @@ public class SignInPageObject extends ActionMethods{
 		Assert.assertEquals(true, click(create));
 		return new SignInPageObject(driver);
 	}
-	
-	
+		
 	public SignInPageObject clickUpdateForLearnersProgramme(String value)
 	{
 		WebElement create = waitAndReturnElementPresentByXPath("//td[contains(text(), '"+value+"')]/../td/a[text()='Update']");
@@ -429,11 +446,24 @@ public class SignInPageObject extends ActionMethods{
 		return new SignInPageObject(driver);
 	}
 	
+	public SignInPageObject updateSignatureOfLearningUsingSQLQuery()
+	{
+		try {
+			Assert.assertEquals(true, ExecuteQuery.runQuery());
+		} 
+		catch (Exception e)
+		{
+			e.printStackTrace();
+		}
+		return new SignInPageObject(driver);
+	}
+	
 	public SignInPageObject clickYesOfCommitmentStatement()
 	{
 		Assert.assertEquals(true, click(yesOfCommitmentStatement));
 		return new SignInPageObject(driver);
 	}
+	
 	
 	
 	public SignInPageObject clickReviewSign()

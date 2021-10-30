@@ -3,8 +3,9 @@ package com.aptemui.utils;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.sql.Statement;
+
+import com.aptemui.extent.ExtentTestManager;
 
 
 
@@ -44,21 +45,29 @@ public class ExecuteQuery {
 		
 	}
 	
-	public static void runQuery() throws Exception {
-		boolean status;
-		
-		status=executeQueryAndReturnData("update s set SignerId=null, SignerPosition=null" + 
+	public static boolean runQuery() throws Exception {
+		boolean status=false;
+		String query = "update s set SignerId=null, SignerPosition=null" + 
 				"                from Orchard_Users_UserPartRecord" + 
 				"                 join WA_Pdf_Signature s on u.id=s.EntityId" + 
-				"                 where username='laxmiaptemautomation+1@gmail.com' and type in ('ApprenticeshipAgreement','Corndel-CommitmentStatement')");
-		
-		System.out.println("execution status: "+ status);
+				"                 where username='laxmiaptemautomation+1@gmail.com' and type in ('ApprenticeshipAgreement','Corndel-CommitmentStatement')"
+				;
+				try {
+			status=executeQueryAndReturnData(query);
+			
+			System.out.println("query execution status: "+ status);
+			ExtentTestManager.logEventToReport("pass", query, " ==> Query is executing");
+			ExtentTestManager.logEventToReport("pass", status, " ==> Execution of query status");
+			status=true;
+		} catch (Exception e) {
+			ExtentTestManager.logEventToReport("fail", "Execution of query: ", e.getMessage());
+		}
+		return status;
 
 	}
 
-	public static void main(String[] args) throws Exception {
-		
-		runQuery();
-	}
+//	public static void main(String[] args) throws Exception {		
+//		runQuery();
+//	}
 
 }
