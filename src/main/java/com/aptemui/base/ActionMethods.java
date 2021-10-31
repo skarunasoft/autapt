@@ -480,7 +480,7 @@ public class ActionMethods{
 	 */
 	public boolean verifyNewTabWindowOfClickAndVerifyElement(
 			String disableORenableComplianceDocuments,
-			WebElement url,
+			//WebElement url,
 			WebElement testLearner,
 			WebElement toggelTiles,
 			WebElement programmes,
@@ -497,13 +497,16 @@ public class ActionMethods{
 		String newWindowURL=null;
 		String currentUrl=null;
 		try {
-			Assert.assertEquals(true, click(url));
+			//Assert.assertEquals(true, click(url));
 			List<String> browserTabs = new ArrayList<String>(driver.getWindowHandles());
-			currentUrl = driver.getCurrentUrl();
-			if (browserTabs.size() > 1) {
-				driver.switchTo().window(browserTabs.get(1));
-				newWindowURL = driver.getCurrentUrl();
-				ExtentTestManager.logEventToReport("pass", newWindowURL, " new url navigated successfully");
+			//currentUrl = driver.getCurrentUrl();
+			//if (browserTabs.size() > 1) 
+			//{
+				//driver.switchTo().window(browserTabs.get(1));
+				//newWindowURL = driver.getCurrentUrl();
+				//ExtentTestManager.logEventToReport("pass", newWindowURL, " new url navigated successfully");
+				
+				
 				Assert.assertEquals(true,click(testLearner));
 				Assert.assertEquals(true,click(toggelTiles));
 				Assert.assertEquals(true,click(programmes));
@@ -558,17 +561,17 @@ public class ActionMethods{
 				
 				
 				
-				driver.close();
-				driver.switchTo().window(browserTabs.get(0));
+			//	driver.close();
+			//	driver.switchTo().window(browserTabs.get(0));
 				flag=true;
-			}
+			//}
 		} catch (Exception e) {
-			ExtentTestManager.logEventToReport("error", url, e.getMessage() + Thread.currentThread().getId());
+		//	ExtentTestManager.logEventToReport("error", url, e.getMessage() + Thread.currentThread().getId());
 			ExtentTestManager.logEventToReport("error", newWindowURL, e.getMessage() + Thread.currentThread().getId());
-			e.printStackTrace();
+			//e.printStackTrace();
 		} finally {
 			driver.switchTo().defaultContent();
-			ExtentTestManager.logEventToReport("pass", currentUrl, "default url navigated successfully");
+		//	ExtentTestManager.logEventToReport("pass", currentUrl, "default url navigated successfully");
 		}
 		return flag;
 	}
@@ -589,7 +592,7 @@ public class ActionMethods{
 	public boolean verifyNewTabWindowOfClickAndVerifyElementForLearnerProgramme(
 			String disableORenableComplianceDocuments,
 			String name,
-			WebElement url,
+			//WebElement url,
 			WebElement testLearner,
 			WebElement toggelTiles,
 			WebElement programmes,
@@ -616,23 +619,23 @@ public class ActionMethods{
 		
 		System.out.println("request2"+ disableORenableComplianceDocuments);
 		boolean flag = false;
-		String newWindowURL=null;
-		String currentUrl=null;
+		//String newWindowURL=null;
+		//String currentUrl=null;
 		try {
-			Assert.assertEquals(true, click(url));
-			List<String> browserTabs = new ArrayList<String>(driver.getWindowHandles());
-			currentUrl = driver.getCurrentUrl();
-			if (browserTabs.size() > 1) {
-				driver.switchTo().window(browserTabs.get(1));
-				newWindowURL = driver.getCurrentUrl();
-				ExtentTestManager.logEventToReport("pass", newWindowURL, " new url navigated successfully");
+			//Assert.assertEquals(true, click(url));
+		//	List<String> browserTabs = new ArrayList<String>(driver.getWindowHandles());
+		//	currentUrl = driver.getCurrentUrl();
+		//	if (browserTabs.size() > 1) {
+		//		driver.switchTo().window(browserTabs.get(1));
+			//	newWindowURL = driver.getCurrentUrl();
+			//	ExtentTestManager.logEventToReport("pass", newWindowURL, " new url navigated successfully");
 				Assert.assertEquals(true,click(testLearner));
 				Assert.assertEquals(true,click(toggelTiles));
 				Assert.assertEquals(true,click(programmes));
 				Assert.assertEquals(true,click(editPencilIcon));
 				//System.out.println("request3"+ disableORenableComplianceDocuments);
 				
-				{
+			//	{
 					ExtentTestManager.logEventToReport("pass", "requested Compliance Documents:",  "enable");
 					if(verifyElementIsDisplayedORNot(complianceDocumentsIsDisplayed)==false)
 					{
@@ -654,7 +657,7 @@ public class ActionMethods{
 					
 					}
 				
-				}
+			//	}
 				
 				Assert.assertEquals(true,click(editPencilIconForLearnerProgramme));
 				
@@ -716,18 +719,19 @@ public class ActionMethods{
 				
 				
 				
-				driver.close();
-				driver.switchTo().window(browserTabs.get(0));
+				//driver.close();
+			//	driver.switchTo().window(browserTabs.get(0));
 				flag=true;
-			}
+			//}
 		} catch (Exception e) {
-			ExtentTestManager.logEventToReport("error", url, e.getMessage() + Thread.currentThread().getId());
-			ExtentTestManager.logEventToReport("error", newWindowURL, e.getMessage() + Thread.currentThread().getId());
-			e.printStackTrace();
-		} finally {
-			driver.switchTo().defaultContent();
-			ExtentTestManager.logEventToReport("pass", currentUrl, "default url navigated successfully");
+		//	ExtentTestManager.logEventToReport("error", url, e.getMessage() + Thread.currentThread().getId());
+			ExtentTestManager.logEventToReport("error", "", e.getMessage() + Thread.currentThread().getId());
+			//e.printStackTrace();
 		}
+		//finally {
+		//driver.switchTo().defaultContent();
+			//ExtentTestManager.logEventToReport("pass", currentUrl, "default url navigated successfully");
+		//}
 		return flag;
 	}
 	

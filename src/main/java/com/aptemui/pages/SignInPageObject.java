@@ -273,12 +273,12 @@ public class SignInPageObject extends ActionMethods{
 	public SignInPageObject clickTenantURLLink(String tenantName, String disableORenable)
 	{
 		
-		WebElement url =waitAndReturnElementPresentByXPath("//a[contains(text(), '"+tenantName+".test.aptem.co.uk')]");
+	//	WebElement url =waitAndReturnElementPresentByXPath("//a[contains(text(), '"+tenantName+".test.aptem.co.uk')]");
 		
 		Assert.assertEquals(true,
 				verifyNewTabWindowOfClickAndVerifyElement(
 						disableORenable,
-						url,
+					//	url,
 						testLearner1Link,
 						toggelTiles,
 						programmes,
@@ -300,13 +300,13 @@ public class SignInPageObject extends ActionMethods{
 		
 		System.out.println("request1"+ disableORenable);
 		
-		WebElement url =waitAndReturnElementPresentByXPath("//a[contains(text(), '"+tenantName+".test.aptem.co.uk')]");
+		//WebElement url =waitAndReturnElementPresentByXPath("//a[contains(text(), '"+tenantName+".test.aptem.co.uk')]");
 		
 		Assert.assertEquals(true,
 				verifyNewTabWindowOfClickAndVerifyElementForLearnerProgramme(
 						disableORenable,
 						name,
-						url,
+						//url,
 						testLearner1Link,
 						toggelTiles,
 						programmes,

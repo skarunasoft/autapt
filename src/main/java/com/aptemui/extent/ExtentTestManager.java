@@ -262,8 +262,8 @@ public class ExtentTestManager{
 					System.out.println("element string" + element.toString());
 					
 					
-					ExtentTestManager.getTest().log(Status.PASS, "["+"<span style='font-size:110%;color:OliveDrab;'>"+element.toString()
-					//.replaceAll(pattern1, "")
+					ExtentTestManager.getTest().log(Status.PASS, "["+"<span style='font-size:100%;color:OliveDrab;'>"+element.toString()
+					.replaceAll(pattern1, "")
 							.replaceAll("ChromeDriver: chrome on WINDOWS", "")
 						//	.replaceAll("(", "")
 							//.replaceAll(")", "")
