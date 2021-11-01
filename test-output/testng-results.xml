@@ -1,150 +1,221 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testng-results skipped="2" failed="0" ignored="0" total="3" passed="1">
+<testng-results skipped="3" failed="0" ignored="0" total="3" passed="0">
   <reporter-output>
   </reporter-output>
-  <suite name="Aptem" duration-ms="99170" started-at="2021-10-15T16:45:53 IST" finished-at="2021-10-15T16:47:33 IST">
+  <suite name="Default suite" duration-ms="102" started-at="2021-10-30T21:12:33 IST" finished-at="2021-10-30T21:12:33 IST">
     <groups>
     </groups>
-    <test name="AptemAutomation-TenantLevelVerifications-1" duration-ms="99170" started-at="2021-10-15T16:45:53 IST" finished-at="2021-10-15T16:47:33 IST">
+    <test name="Default test" duration-ms="102" started-at="2021-10-30T21:12:33 IST" finished-at="2021-10-30T21:12:33 IST">
       <class name="com.aptem.tests.TenantLevelTest">
-        <test-method status="PASS" signature="setUpBrowser(java.lang.String)[pri:0, instance:com.aptem.tests.TenantLevelTest@12cdcf4]" name="setUpBrowser" is-config="true" duration-ms="56940" started-at="2021-10-15T16:45:54 IST" finished-at="2021-10-15T16:46:50 IST">
-          <params>
-            <param index="0">
-              <value>
-                <![CDATA[001]]>
-              </value>
-            </param>
-          </params>
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- setUpBrowser -->
-        <test-method status="PASS" signature="disableComplianceDocumentsAtTenantLevel()[pri:0, instance:com.aptem.tests.TenantLevelTest@12cdcf4]" name="disableComplianceDocumentsAtTenantLevel" duration-ms="42081" started-at="2021-10-15T16:46:50 IST" finished-at="2021-10-15T16:47:33 IST">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- disableComplianceDocumentsAtTenantLevel -->
-        <test-method status="FAIL" signature="closeApplication(org.testng.ITestResult, java.lang.String)[pri:0, instance:com.aptem.tests.TenantLevelTest@12cdcf4]" name="closeApplication" is-config="true" duration-ms="-1634296653140" started-at="2021-10-15T16:47:33 IST" finished-at="1970-01-01T05:30:00 IST">
+        <test-method status="FAIL" signature="setUpBrowser(java.lang.String)[pri:0, instance:com.aptem.tests.TenantLevelTest@670b40af]" name="setUpBrowser" is-config="true" duration-ms="-1635608553202" started-at="2021-10-30T21:12:33 IST" finished-at="1970-01-01T05:30:00 IST">
           <exception class="org.testng.TestNGException">
             <message>
               <![CDATA[
-Can inject only one of <ITestContext, XmlTest, Method, Object[], ITestResult> into a @AfterMethod annotated closeApplication.
-For more information on native dependency injection please refer to https://testng.org/doc/documentation-main.html#native-dependency-injection]]>
+Parameter 'testcaseid' is required by BeforeMethod on method setUpBrowser but has not been marked @Optional or defined
+in C:\Users\TNQ\AppData\Local\Temp\testng-eclipse-702290599\testng-customsuite.xml]]>
             </message>
             <full-stacktrace>
               <![CDATA[org.testng.TestNGException: 
-Can inject only one of <ITestContext, XmlTest, Method, Object[], ITestResult> into a @AfterMethod annotated closeApplication.
-For more information on native dependency injection please refer to https://testng.org/doc/documentation-main.html#native-dependency-injection
-at org.testng.internal.Parameters.checkParameterTypes(Parameters.java:437)
-at org.testng.internal.Parameters.createParametersForMethod(Parameters.java:351)
-at org.testng.internal.Parameters.createParameters(Parameters.java:708)
+Parameter 'testcaseid' is required by BeforeMethod on method setUpBrowser but has not been marked @Optional or defined
+in C:\Users\TNQ\AppData\Local\Temp\testng-eclipse-702290599\testng-customsuite.xml
+at org.testng.internal.Parameters.createParams(Parameters.java:268)
+at org.testng.internal.Parameters.createParametersForMethod(Parameters.java:356)
+at org.testng.internal.Parameters.createParameters(Parameters.java:700)
 at org.testng.internal.Parameters.createConfigurationParameters(Parameters.java:166)
 at org.testng.internal.ConfigInvoker.invokeConfigurations(ConfigInvoker.java:301)
 at org.testng.internal.TestInvoker.runConfigMethods(TestInvoker.java:701)
-at org.testng.internal.TestInvoker.runAfterGroupsConfigurations(TestInvoker.java:677)
-at org.testng.internal.TestInvoker.invokeMethod(TestInvoker.java:661)
+at org.testng.internal.TestInvoker.invokeMethod(TestInvoker.java:527)
 at org.testng.internal.TestInvoker.invokeTestMethod(TestInvoker.java:174)
 at org.testng.internal.MethodRunner.runInSequence(MethodRunner.java:46)
 at org.testng.internal.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:822)
 at org.testng.internal.TestInvoker.invokeTestMethods(TestInvoker.java:147)
 at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:146)
 at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:128)
-at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
-at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
-at java.lang.Thread.run(Thread.java:748)
+at java.util.ArrayList.forEach(ArrayList.java:1257)
+at org.testng.TestRunner.privateRun(TestRunner.java:764)
+at org.testng.TestRunner.run(TestRunner.java:585)
+at org.testng.SuiteRunner.runTest(SuiteRunner.java:384)
+at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:378)
+at org.testng.SuiteRunner.privateRun(SuiteRunner.java:337)
+at org.testng.SuiteRunner.run(SuiteRunner.java:286)
+at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:53)
+at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:96)
+at org.testng.TestNG.runSuitesSequentially(TestNG.java:1218)
+at org.testng.TestNG.runSuitesLocally(TestNG.java:1140)
+at org.testng.TestNG.runSuites(TestNG.java:1069)
+at org.testng.TestNG.run(TestNG.java:1037)
+at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:115)
+at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:251)
+at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:77)
 ]]>
             </full-stacktrace>
           </exception> <!-- org.testng.TestNGException -->
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- closeApplication -->
-        <test-method status="SKIP" signature="setUpBrowser(java.lang.String)[pri:0, instance:com.aptem.tests.TenantLevelTest@12cdcf4]" name="setUpBrowser" is-config="true" duration-ms="-1634296653146" started-at="2021-10-15T16:47:33 IST" finished-at="1970-01-01T05:30:00 IST">
-          <reporter-output>
-          </reporter-output>
         </test-method> <!-- setUpBrowser -->
-        <test-method status="SKIP" signature="enableComplianceDocumentsAtTenantLevel()[pri:0, instance:com.aptem.tests.TenantLevelTest@12cdcf4]" name="enableComplianceDocumentsAtTenantLevel" duration-ms="0" started-at="2021-10-15T16:47:33 IST" finished-at="2021-10-15T16:47:33 IST">
+        <test-method status="SKIP" signature="addDocumentsToTheLearnersProgramme()[pri:0, instance:com.aptem.tests.TenantLevelTest@670b40af]" name="addDocumentsToTheLearnersProgramme" duration-ms="0" started-at="2021-10-30T21:12:33 IST" finished-at="2021-10-30T21:12:33 IST">
           <exception class="org.testng.TestNGException">
             <message>
               <![CDATA[
-Can inject only one of <ITestContext, XmlTest, Method, Object[], ITestResult> into a @AfterMethod annotated closeApplication.
-For more information on native dependency injection please refer to https://testng.org/doc/documentation-main.html#native-dependency-injection]]>
+Parameter 'testcaseid' is required by BeforeMethod on method setUpBrowser but has not been marked @Optional or defined
+in C:\Users\TNQ\AppData\Local\Temp\testng-eclipse-702290599\testng-customsuite.xml]]>
             </message>
             <full-stacktrace>
               <![CDATA[org.testng.TestNGException: 
-Can inject only one of <ITestContext, XmlTest, Method, Object[], ITestResult> into a @AfterMethod annotated closeApplication.
-For more information on native dependency injection please refer to https://testng.org/doc/documentation-main.html#native-dependency-injection
-at org.testng.internal.Parameters.checkParameterTypes(Parameters.java:437)
-at org.testng.internal.Parameters.createParametersForMethod(Parameters.java:351)
-at org.testng.internal.Parameters.createParameters(Parameters.java:708)
+Parameter 'testcaseid' is required by BeforeMethod on method setUpBrowser but has not been marked @Optional or defined
+in C:\Users\TNQ\AppData\Local\Temp\testng-eclipse-702290599\testng-customsuite.xml
+at org.testng.internal.Parameters.createParams(Parameters.java:268)
+at org.testng.internal.Parameters.createParametersForMethod(Parameters.java:356)
+at org.testng.internal.Parameters.createParameters(Parameters.java:700)
 at org.testng.internal.Parameters.createConfigurationParameters(Parameters.java:166)
 at org.testng.internal.ConfigInvoker.invokeConfigurations(ConfigInvoker.java:301)
 at org.testng.internal.TestInvoker.runConfigMethods(TestInvoker.java:701)
-at org.testng.internal.TestInvoker.runAfterGroupsConfigurations(TestInvoker.java:677)
-at org.testng.internal.TestInvoker.invokeMethod(TestInvoker.java:661)
+at org.testng.internal.TestInvoker.invokeMethod(TestInvoker.java:527)
 at org.testng.internal.TestInvoker.invokeTestMethod(TestInvoker.java:174)
 at org.testng.internal.MethodRunner.runInSequence(MethodRunner.java:46)
 at org.testng.internal.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:822)
 at org.testng.internal.TestInvoker.invokeTestMethods(TestInvoker.java:147)
 at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:146)
 at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:128)
-at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
-at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
-at java.lang.Thread.run(Thread.java:748)
-]]>
-            </full-stacktrace>
-          </exception> <!-- org.testng.TestNGException -->
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- enableComplianceDocumentsAtTenantLevel -->
-        <test-method status="SKIP" signature="closeApplication(org.testng.ITestResult, java.lang.String)[pri:0, instance:com.aptem.tests.TenantLevelTest@12cdcf4]" name="closeApplication" is-config="true" duration-ms="-1634296653152" started-at="2021-10-15T16:47:33 IST" finished-at="1970-01-01T05:30:00 IST">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- closeApplication -->
-        <test-method status="SKIP" signature="setUpBrowser(java.lang.String)[pri:0, instance:com.aptem.tests.TenantLevelTest@12cdcf4]" name="setUpBrowser" is-config="true" duration-ms="-1634296653153" started-at="2021-10-15T16:47:33 IST" finished-at="1970-01-01T05:30:00 IST">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- setUpBrowser -->
-        <test-method status="SKIP" signature="addDocumentsToTheLearnersProgramme()[pri:0, instance:com.aptem.tests.TenantLevelTest@12cdcf4]" name="addDocumentsToTheLearnersProgramme" duration-ms="0" started-at="2021-10-15T16:47:33 IST" finished-at="2021-10-15T16:47:33 IST">
-          <exception class="org.testng.TestNGException">
-            <message>
-              <![CDATA[
-Can inject only one of <ITestContext, XmlTest, Method, Object[], ITestResult> into a @AfterMethod annotated closeApplication.
-For more information on native dependency injection please refer to https://testng.org/doc/documentation-main.html#native-dependency-injection]]>
-            </message>
-            <full-stacktrace>
-              <![CDATA[org.testng.TestNGException: 
-Can inject only one of <ITestContext, XmlTest, Method, Object[], ITestResult> into a @AfterMethod annotated closeApplication.
-For more information on native dependency injection please refer to https://testng.org/doc/documentation-main.html#native-dependency-injection
-at org.testng.internal.Parameters.checkParameterTypes(Parameters.java:437)
-at org.testng.internal.Parameters.createParametersForMethod(Parameters.java:351)
-at org.testng.internal.Parameters.createParameters(Parameters.java:708)
-at org.testng.internal.Parameters.createConfigurationParameters(Parameters.java:166)
-at org.testng.internal.ConfigInvoker.invokeConfigurations(ConfigInvoker.java:301)
-at org.testng.internal.TestInvoker.runConfigMethods(TestInvoker.java:701)
-at org.testng.internal.TestInvoker.runAfterGroupsConfigurations(TestInvoker.java:677)
-at org.testng.internal.TestInvoker.invokeMethod(TestInvoker.java:661)
-at org.testng.internal.TestInvoker.invokeTestMethod(TestInvoker.java:174)
-at org.testng.internal.MethodRunner.runInSequence(MethodRunner.java:46)
-at org.testng.internal.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:822)
-at org.testng.internal.TestInvoker.invokeTestMethods(TestInvoker.java:147)
-at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:146)
-at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:128)
-at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
-at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
-at java.lang.Thread.run(Thread.java:748)
+at java.util.ArrayList.forEach(ArrayList.java:1257)
+at org.testng.TestRunner.privateRun(TestRunner.java:764)
+at org.testng.TestRunner.run(TestRunner.java:585)
+at org.testng.SuiteRunner.runTest(SuiteRunner.java:384)
+at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:378)
+at org.testng.SuiteRunner.privateRun(SuiteRunner.java:337)
+at org.testng.SuiteRunner.run(SuiteRunner.java:286)
+at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:53)
+at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:96)
+at org.testng.TestNG.runSuitesSequentially(TestNG.java:1218)
+at org.testng.TestNG.runSuitesLocally(TestNG.java:1140)
+at org.testng.TestNG.runSuites(TestNG.java:1069)
+at org.testng.TestNG.run(TestNG.java:1037)
+at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:115)
+at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:251)
+at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:77)
 ]]>
             </full-stacktrace>
           </exception> <!-- org.testng.TestNGException -->
           <reporter-output>
           </reporter-output>
         </test-method> <!-- addDocumentsToTheLearnersProgramme -->
-        <test-method status="SKIP" signature="closeApplication(org.testng.ITestResult, java.lang.String)[pri:0, instance:com.aptem.tests.TenantLevelTest@12cdcf4]" name="closeApplication" is-config="true" duration-ms="-1634296653157" started-at="2021-10-15T16:47:33 IST" finished-at="1970-01-01T05:30:00 IST">
+        <test-method status="SKIP" signature="closeApplication(org.testng.ITestResult)[pri:0, instance:com.aptem.tests.TenantLevelTest@670b40af]" name="closeApplication" is-config="true" duration-ms="-1635608553234" started-at="2021-10-30T21:12:33 IST" finished-at="1970-01-01T05:30:00 IST">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- closeApplication -->
-        <test-method status="PASS" signature="closeDriver()[pri:0, instance:com.aptem.tests.TenantLevelTest@12cdcf4]" name="closeDriver" is-config="true" duration-ms="607" started-at="2021-10-15T16:47:33 IST" finished-at="2021-10-15T16:47:33 IST">
+        <test-method status="SKIP" signature="setUpBrowser(java.lang.String)[pri:0, instance:com.aptem.tests.TenantLevelTest@670b40af]" name="setUpBrowser" is-config="true" duration-ms="-1635608553236" started-at="2021-10-30T21:12:33 IST" finished-at="1970-01-01T05:30:00 IST">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setUpBrowser -->
+        <test-method status="SKIP" signature="disableComplianceDocumentsAtTenantLevel()[pri:0, instance:com.aptem.tests.TenantLevelTest@670b40af]" name="disableComplianceDocumentsAtTenantLevel" duration-ms="0" started-at="2021-10-30T21:12:33 IST" finished-at="2021-10-30T21:12:33 IST">
+          <exception class="org.testng.TestNGException">
+            <message>
+              <![CDATA[
+Parameter 'testcaseid' is required by BeforeMethod on method setUpBrowser but has not been marked @Optional or defined
+in C:\Users\TNQ\AppData\Local\Temp\testng-eclipse-702290599\testng-customsuite.xml]]>
+            </message>
+            <full-stacktrace>
+              <![CDATA[org.testng.TestNGException: 
+Parameter 'testcaseid' is required by BeforeMethod on method setUpBrowser but has not been marked @Optional or defined
+in C:\Users\TNQ\AppData\Local\Temp\testng-eclipse-702290599\testng-customsuite.xml
+at org.testng.internal.Parameters.createParams(Parameters.java:268)
+at org.testng.internal.Parameters.createParametersForMethod(Parameters.java:356)
+at org.testng.internal.Parameters.createParameters(Parameters.java:700)
+at org.testng.internal.Parameters.createConfigurationParameters(Parameters.java:166)
+at org.testng.internal.ConfigInvoker.invokeConfigurations(ConfigInvoker.java:301)
+at org.testng.internal.TestInvoker.runConfigMethods(TestInvoker.java:701)
+at org.testng.internal.TestInvoker.invokeMethod(TestInvoker.java:527)
+at org.testng.internal.TestInvoker.invokeTestMethod(TestInvoker.java:174)
+at org.testng.internal.MethodRunner.runInSequence(MethodRunner.java:46)
+at org.testng.internal.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:822)
+at org.testng.internal.TestInvoker.invokeTestMethods(TestInvoker.java:147)
+at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:146)
+at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:128)
+at java.util.ArrayList.forEach(ArrayList.java:1257)
+at org.testng.TestRunner.privateRun(TestRunner.java:764)
+at org.testng.TestRunner.run(TestRunner.java:585)
+at org.testng.SuiteRunner.runTest(SuiteRunner.java:384)
+at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:378)
+at org.testng.SuiteRunner.privateRun(SuiteRunner.java:337)
+at org.testng.SuiteRunner.run(SuiteRunner.java:286)
+at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:53)
+at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:96)
+at org.testng.TestNG.runSuitesSequentially(TestNG.java:1218)
+at org.testng.TestNG.runSuitesLocally(TestNG.java:1140)
+at org.testng.TestNG.runSuites(TestNG.java:1069)
+at org.testng.TestNG.run(TestNG.java:1037)
+at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:115)
+at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:251)
+at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:77)
+]]>
+            </full-stacktrace>
+          </exception> <!-- org.testng.TestNGException -->
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- disableComplianceDocumentsAtTenantLevel -->
+        <test-method status="SKIP" signature="closeApplication(org.testng.ITestResult)[pri:0, instance:com.aptem.tests.TenantLevelTest@670b40af]" name="closeApplication" is-config="true" duration-ms="-1635608553244" started-at="2021-10-30T21:12:33 IST" finished-at="1970-01-01T05:30:00 IST">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- closeApplication -->
+        <test-method status="SKIP" signature="setUpBrowser(java.lang.String)[pri:0, instance:com.aptem.tests.TenantLevelTest@670b40af]" name="setUpBrowser" is-config="true" duration-ms="-1635608553246" started-at="2021-10-30T21:12:33 IST" finished-at="1970-01-01T05:30:00 IST">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setUpBrowser -->
+        <test-method status="SKIP" signature="enableComplianceDocumentsAtTenantLevel()[pri:0, instance:com.aptem.tests.TenantLevelTest@670b40af]" name="enableComplianceDocumentsAtTenantLevel" duration-ms="0" started-at="2021-10-30T21:12:33 IST" finished-at="2021-10-30T21:12:33 IST">
+          <exception class="org.testng.TestNGException">
+            <message>
+              <![CDATA[
+Parameter 'testcaseid' is required by BeforeMethod on method setUpBrowser but has not been marked @Optional or defined
+in C:\Users\TNQ\AppData\Local\Temp\testng-eclipse-702290599\testng-customsuite.xml]]>
+            </message>
+            <full-stacktrace>
+              <![CDATA[org.testng.TestNGException: 
+Parameter 'testcaseid' is required by BeforeMethod on method setUpBrowser but has not been marked @Optional or defined
+in C:\Users\TNQ\AppData\Local\Temp\testng-eclipse-702290599\testng-customsuite.xml
+at org.testng.internal.Parameters.createParams(Parameters.java:268)
+at org.testng.internal.Parameters.createParametersForMethod(Parameters.java:356)
+at org.testng.internal.Parameters.createParameters(Parameters.java:700)
+at org.testng.internal.Parameters.createConfigurationParameters(Parameters.java:166)
+at org.testng.internal.ConfigInvoker.invokeConfigurations(ConfigInvoker.java:301)
+at org.testng.internal.TestInvoker.runConfigMethods(TestInvoker.java:701)
+at org.testng.internal.TestInvoker.invokeMethod(TestInvoker.java:527)
+at org.testng.internal.TestInvoker.invokeTestMethod(TestInvoker.java:174)
+at org.testng.internal.MethodRunner.runInSequence(MethodRunner.java:46)
+at org.testng.internal.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:822)
+at org.testng.internal.TestInvoker.invokeTestMethods(TestInvoker.java:147)
+at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:146)
+at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:128)
+at java.util.ArrayList.forEach(ArrayList.java:1257)
+at org.testng.TestRunner.privateRun(TestRunner.java:764)
+at org.testng.TestRunner.run(TestRunner.java:585)
+at org.testng.SuiteRunner.runTest(SuiteRunner.java:384)
+at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:378)
+at org.testng.SuiteRunner.privateRun(SuiteRunner.java:337)
+at org.testng.SuiteRunner.run(SuiteRunner.java:286)
+at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:53)
+at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:96)
+at org.testng.TestNG.runSuitesSequentially(TestNG.java:1218)
+at org.testng.TestNG.runSuitesLocally(TestNG.java:1140)
+at org.testng.TestNG.runSuites(TestNG.java:1069)
+at org.testng.TestNG.run(TestNG.java:1037)
+at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:115)
+at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:251)
+at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:77)
+]]>
+            </full-stacktrace>
+          </exception> <!-- org.testng.TestNGException -->
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- enableComplianceDocumentsAtTenantLevel -->
+        <test-method status="SKIP" signature="closeApplication(org.testng.ITestResult)[pri:0, instance:com.aptem.tests.TenantLevelTest@670b40af]" name="closeApplication" is-config="true" duration-ms="-1635608553254" started-at="2021-10-30T21:12:33 IST" finished-at="1970-01-01T05:30:00 IST">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- closeApplication -->
+        <test-method status="PASS" signature="closeDriver()[pri:0, instance:com.aptem.tests.TenantLevelTest@670b40af]" name="closeDriver" is-config="true" duration-ms="416" started-at="2021-10-30T21:12:33 IST" finished-at="2021-10-30T21:12:33 IST">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- closeDriver -->
       </class> <!-- com.aptem.tests.TenantLevelTest -->
-    </test> <!-- AptemAutomation-TenantLevelVerifications-1 -->
-  </suite> <!-- Aptem -->
+    </test> <!-- Default test -->
+  </suite> <!-- Default suite -->
 </testng-results>
