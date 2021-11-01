@@ -589,6 +589,8 @@ public class ActionMethods{
 	 * @param verifyURL
 	 * @return
 	 */
+	
+	// for third scenarios
 	public boolean verifyNewTabWindowOfClickAndVerifyElementForLearnerProgramme(
 			String disableORenableComplianceDocuments,
 			String name,

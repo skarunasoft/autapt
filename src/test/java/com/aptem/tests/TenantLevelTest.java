@@ -104,7 +104,7 @@ public class TenantLevelTest extends BaseDriver {
 							  .clickRefreshIconOfComplianceDocuments()
 							  .clickUpdateForLearnersProgramme(name)
 							  .clickYesOfCommitmentStatement()
-							// .updateSignatureOfLearningUsingSQLQuery()
+							  .updateSignatureOfLearningUsingSQLQuery()
 			  .navigateToLearnersAccount(ResourceHandler.getPropValue("learner_url"))
 			  .signInLearnerAccount(
 					  ResourceHandler.getPropValue("learner_username"),
