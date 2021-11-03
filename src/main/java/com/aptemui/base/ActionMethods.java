@@ -32,7 +32,6 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 
 import com.aptemui.extent.ExtentTestManager;
-import com.aptemui.pages.SignInPageObject;
 
 
 
@@ -44,9 +43,9 @@ public class ActionMethods{
 	private Actions action;
 	public ActionMethods() {
 		driver = WebDriverHandler.getInstance().getDriver();	
-		System.out.println("action method"+driver);
+		//System.out.println("action method"+driver);
 		action = new Actions(driver);
-		driverWait = new WebDriverWait(driver, Duration.ofSeconds(20));
+		driverWait = new WebDriverWait(driver, Duration.ofSeconds(10));
 		if (WebDriverHandler.getInstance().getWebDriverWait() == null) {
 			WebDriverHandler.getInstance().setWebDriverWait(driverWait);
 		}
@@ -126,9 +125,9 @@ public class ActionMethods{
 		boolean elementPresent = false;
 		try {
 			driverWait.until(ExpectedConditions.visibilityOf(element));
-			new WebDriverWait(driver, Duration.ofSeconds(30)).ignoring(StaleElementReferenceException.class)
+			new WebDriverWait(driver, Duration.ofSeconds(20)).ignoring(StaleElementReferenceException.class)
 					.ignoring(NoSuchElementException.class);
-			new WebDriverWait(driver, Duration.ofSeconds(30)).ignoring(InvalidElementStateException.class)
+			new WebDriverWait(driver, Duration.ofSeconds(20)).ignoring(InvalidElementStateException.class)
 					.ignoring(NoSuchElementException.class);
 			ExtentTestManager.logEventToReport("pass", element, "Element Visible and Stable");
 			elementPresent = true;
@@ -151,9 +150,9 @@ public class ActionMethods{
 		boolean elementPresent = false;
 		try {
 			driverWait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(xpath)));
-			new WebDriverWait(driver, Duration.ofSeconds(30)).ignoring(StaleElementReferenceException.class)
+			new WebDriverWait(driver, Duration.ofSeconds(10)).ignoring(StaleElementReferenceException.class)
 					.ignoring(NoSuchElementException.class);
-			new WebDriverWait(driver, Duration.ofSeconds(30)).ignoring(InvalidElementStateException.class)
+			new WebDriverWait(driver, Duration.ofSeconds(10)).ignoring(InvalidElementStateException.class)
 					.ignoring(NoSuchElementException.class);
 			ExtentTestManager.logEventToReport("pass", xpath, " XPath Found And Returned");
 			elementPresent = true;
@@ -174,9 +173,9 @@ public class ActionMethods{
 		boolean elementPresent = false;
 		try {
 			driverWait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath(xpath)));
-			new WebDriverWait(driver, Duration.ofSeconds(30)).ignoring(StaleElementReferenceException.class)
+			new WebDriverWait(driver, Duration.ofSeconds(10)).ignoring(StaleElementReferenceException.class)
 					.ignoring(NoSuchElementException.class);
-			new WebDriverWait(driver, Duration.ofSeconds(30)).ignoring(InvalidElementStateException.class)
+			new WebDriverWait(driver, Duration.ofSeconds(10)).ignoring(InvalidElementStateException.class)
 					.ignoring(NoSuchElementException.class);
 			ExtentTestManager.logEventToReport("pass", xpath, " XPath NOT Found");
 			elementPresent = true;
@@ -396,9 +395,10 @@ public class ActionMethods{
 	 * 
 	 * @param url
 	 * @return
+	 * @throws InterruptedException 
 	 * @throws Exception
 	 */
-	public boolean navigate(String url) {
+	public boolean navigate(String url) throws InterruptedException {
 
 		boolean flag = false;
 		try {
@@ -409,6 +409,10 @@ public class ActionMethods{
 			ExtentTestManager.logEventToReport("error", url, e.getMessage() + Thread.currentThread().getId());
 			e.printStackTrace();
 			}
+		finally {
+			Thread.sleep(10000);
+			
+		}
 		return flag;
 	}
 	
@@ -495,10 +499,10 @@ public class ActionMethods{
 	{
 		boolean flag = false;
 		String newWindowURL=null;
-		String currentUrl=null;
+		//String currentUrl=null;
 		try {
 			//Assert.assertEquals(true, click(url));
-			List<String> browserTabs = new ArrayList<String>(driver.getWindowHandles());
+			//List<String> browserTabs = new ArrayList<String>(driver.getWindowHandles());
 			//currentUrl = driver.getCurrentUrl();
 			//if (browserTabs.size() > 1) 
 			//{
@@ -506,11 +510,12 @@ public class ActionMethods{
 				//newWindowURL = driver.getCurrentUrl();
 				//ExtentTestManager.logEventToReport("pass", newWindowURL, " new url navigated successfully");
 				
-				
-				Assert.assertEquals(true,click(testLearner));
-				Assert.assertEquals(true,click(toggelTiles));
-				Assert.assertEquals(true,click(programmes));
-				Assert.assertEquals(true,click(editPencilIcon));
+			/*
+			 * Assert.assertEquals(true,click(testLearner));
+			 * Assert.assertEquals(true,click(toggelTiles));
+			 * Assert.assertEquals(true,click(programmes));
+			 * Assert.assertEquals(true,click(editPencilIcon));
+			 */
 				
 				
 				if(disableORenableComplianceDocuments.equalsIgnoreCase("disable"))
@@ -550,7 +555,6 @@ public class ActionMethods{
 					}
 					else if(verifyElementIsDisplayedORNot(complianceDocumentsIsDisplayed)==true)
 					{
-						
 						ExtentTestManager.logEventToReport("pass", "Compliance document is enabled already",  ""+Thread.currentThread().getId());
 					
 					}
@@ -569,10 +573,11 @@ public class ActionMethods{
 		//	ExtentTestManager.logEventToReport("error", url, e.getMessage() + Thread.currentThread().getId());
 			ExtentTestManager.logEventToReport("error", newWindowURL, e.getMessage() + Thread.currentThread().getId());
 			//e.printStackTrace();
-		} finally {
-			driver.switchTo().defaultContent();
+		} 
+		//finally {
+			//driver.switchTo().defaultContent();
 		//	ExtentTestManager.logEventToReport("pass", currentUrl, "default url navigated successfully");
-		}
+		//}
 		return flag;
 	}
 	
@@ -593,8 +598,8 @@ public class ActionMethods{
 	// for third scenarios
 	public boolean verifyNewTabWindowOfClickAndVerifyElementForLearnerProgramme(
 			String disableORenableComplianceDocuments,
+			//String url,
 			String name,
-			//WebElement url,
 			WebElement testLearner,
 			WebElement toggelTiles,
 			WebElement programmes,
@@ -621,76 +626,37 @@ public class ActionMethods{
 		
 		System.out.println("request2"+ disableORenableComplianceDocuments);
 		boolean flag = false;
-		//String newWindowURL=null;
-		//String currentUrl=null;
 		try {
-			//Assert.assertEquals(true, click(url));
-		//	List<String> browserTabs = new ArrayList<String>(driver.getWindowHandles());
-		//	currentUrl = driver.getCurrentUrl();
-		//	if (browserTabs.size() > 1) {
-		//		driver.switchTo().window(browserTabs.get(1));
-			//	newWindowURL = driver.getCurrentUrl();
-			//	ExtentTestManager.logEventToReport("pass", newWindowURL, " new url navigated successfully");
-				Assert.assertEquals(true,click(testLearner));
-				Assert.assertEquals(true,click(toggelTiles));
-				Assert.assertEquals(true,click(programmes));
-				Assert.assertEquals(true,click(editPencilIcon));
-				//System.out.println("request3"+ disableORenableComplianceDocuments);
-				
-			//	{
-					ExtentTestManager.logEventToReport("pass", "requested Compliance Documents:",  "enable");
-					if(verifyElementIsDisplayedORNot(complianceDocumentsIsDisplayed)==false)
-					{
-						ExtentTestManager.logEventToReport("pass", "Compliance document is disabled, Start to enable",  ""+Thread.currentThread().getId());
-						Assert.assertEquals(true,click(complianceDocuments));
-						Assert.assertEquals(true,click(enabledButton));
-						Thread.sleep(3000);
-						Assert.assertEquals(true,click(confirmButtonForComplianceDocuments));
-						Thread.sleep(6000);
-						Assert.assertEquals(true,click(confirmButton));
-						ExtentTestManager.logEventToReport("pass", "Compliance document is enabled now",  ""+Thread.currentThread().getId());
-					
-						
-					}
-					else if(verifyElementIsDisplayedORNot(complianceDocumentsIsDisplayed)==true)
-					{
-						Assert.assertEquals(true, navigateBack());
-						ExtentTestManager.logEventToReport("pass", "Compliance document is enabled already",  ""+Thread.currentThread().getId());
-					
-					}
-				
-			//	}
-				
-				Assert.assertEquals(true,click(editPencilIconForLearnerProgramme));
-				
+			Assert.assertEquals(true,click(confirmButton));
 				if(disableORenableComplianceDocuments.equalsIgnoreCase("enable"))
 				{
+					
+					
+					//navigate this url 
+					//https://laxmi.test.aptem.co.uk/MWS.PerformanceManager/ClientProgram/Edit/9
+					
+					//Assert.assertEquals(true, navigate(url));
+					Thread.sleep(6000);
+					Assert.assertEquals(true,click(editPencilIconForLearnerProgramme));
+					
 					ExtentTestManager.logEventToReport("pass", "requested Compliance Documents:",  "enable");
 					if(verifyElementIsDisplayedORNot(complianceDocumentsIsDisplayed)==false)
 					{
 						ExtentTestManager.logEventToReport("pass", "Compliance document is disabled, Start to enable",  ""+Thread.currentThread().getId());
 						Assert.assertEquals(true,click(complianceDocuments));
 						Assert.assertEquals(true,click(enabledButton));
+						Assert.assertEquals(true,deleteAllComplianceDocuments(forDeleteComplianceDocument, deleteDocuments, confirmYesDeleteDocuments));
+						Assert.assertEquals(true,click(add));
+						 Assert.assertEquals(true,typeText(text, name));
+						 Assert.assertEquals(true, triggerKeyEvent(text, Keys.TAB));
+						 Assert.assertEquals(true,click(templateSelectOne));
+						 Assert.assertEquals(true,click(CommitmentStatement));
+						Assert.assertEquals(true,click(apply));
 						Thread.sleep(3000);
 						Assert.assertEquals(true,click(confirmButtonForComplianceDocuments));
 						Thread.sleep(6000);
 						Assert.assertEquals(true,click(confirmButton));
-						
-						
-//						Assert.assertEquals(true,deleteAllComplianceDocuments(forDeleteComplianceDocument, deleteDocuments, confirmYesDeleteDocuments));
-//						Assert.assertEquals(true,click(add));
-//						 Assert.assertEquals(true,typeText(text, name));
-//						 Assert.assertEquals(true, triggerKeyEvent(text, Keys.TAB));
-//						 Assert.assertEquals(true,click(templateSelectOne));
-//						 Assert.assertEquals(true,click(CommitmentStatement));
-//						Assert.assertEquals(true,click(apply));
-//						
-//						
-//						Thread.sleep(3000);
-//						Assert.assertEquals(true,click(confirmButtonForComplianceDocuments));
-//						Thread.sleep(6000);
-//						Assert.assertEquals(true,click(confirmButton));
-//						Assert.assertEquals(true,click(warningYesButton));
+						Assert.assertEquals(true,click(warningYesButton));
 						ExtentTestManager.logEventToReport("pass", "Compliance document is enabled now",  ""+Thread.currentThread().getId());
 					
 						
@@ -698,48 +664,36 @@ public class ActionMethods{
 					else if(verifyElementIsDisplayedORNot(complianceDocumentsIsDisplayed)==true)
 					{
 						ExtentTestManager.logEventToReport("pass", "Compliance document is enabled already",  ""+Thread.currentThread().getId());
-//						Assert.assertEquals(true,click(complianceDocuments));
-//						Assert.assertEquals(true,deleteAllComplianceDocuments(forDeleteComplianceDocument, deleteDocuments, confirmYesDeleteDocuments));
-//						Assert.assertEquals(true,click(add));
-//						 Assert.assertEquals(true,typeText(text, name));
-//						 Assert.assertEquals(true, triggerKeyEvent(text, Keys.TAB));
-//						 Assert.assertEquals(true,click(templateSelectOne));
-//						 Assert.assertEquals(true,click(CommitmentStatement));
-//						Assert.assertEquals(true,click(apply));
-//						Thread.sleep(3000);
-//						Assert.assertEquals(true,click(confirmButtonForComplianceDocuments));
-//						Thread.sleep(6000);
-//						Assert.assertEquals(true,click(confirmButton));
-//						Assert.assertEquals(true,click(warningYesButton));
+						Assert.assertEquals(true,click(complianceDocuments));
+						Assert.assertEquals(true,deleteAllComplianceDocuments(forDeleteComplianceDocument, deleteDocuments, confirmYesDeleteDocuments));
+						Assert.assertEquals(true,click(add));
+						 Assert.assertEquals(true,typeText(text, name));
+						 Assert.assertEquals(true, triggerKeyEvent(text, Keys.TAB));
+						 Assert.assertEquals(true,click(templateSelectOne));
+						 Assert.assertEquals(true,click(CommitmentStatement));
+						Assert.assertEquals(true,click(apply));
+						Thread.sleep(3000);
+						Assert.assertEquals(true,click(confirmButtonForComplianceDocuments));
+						Thread.sleep(6000);
+						Assert.assertEquals(true,click(confirmButton));
+						Assert.assertEquals(true,click(warningYesButton));
 						
 					
 					}
 				
 				}
-				
-				
-				
-				
-				
-				//driver.close();
-			//	driver.switchTo().window(browserTabs.get(0));
+			
 				flag=true;
-			//}
 		} catch (Exception e) {
-		//	ExtentTestManager.logEventToReport("error", url, e.getMessage() + Thread.currentThread().getId());
 			ExtentTestManager.logEventToReport("error", "", e.getMessage() + Thread.currentThread().getId());
-			//e.printStackTrace();
 		}
-		//finally {
-		//driver.switchTo().defaultContent();
-			//ExtentTestManager.logEventToReport("pass", currentUrl, "default url navigated successfully");
-		//}
+	
 		return flag;
 	}
 	
 	
 	
-	public boolean deleteAllComplianceDocuments(WebElement forDeleteComplianceDocument, List<WebElement> deleteDocuments, WebElement confirmYesDeleteDocuments)
+	public boolean deleteAllComplianceDocuments(WebElement forDeleteComplianceDocument, List<WebElement> deleteDocuments, WebElement confirmYesDeleteDocuments) throws InterruptedException
 	{
 		boolean flag=false;
 		try {
@@ -747,7 +701,6 @@ public class ActionMethods{
 			{
 				ExtentTestManager.logEventToReport("pass", forDeleteComplianceDocument, " presented");
 			for (WebElement deleteDoc : deleteDocuments) {
-				
 				Assert.assertEquals(true,click(deleteDoc));
 				Assert.assertEquals(true,click(confirmYesDeleteDocuments));
 			}
@@ -909,7 +862,9 @@ public class ActionMethods{
 		boolean flag = false;
 		try {
 			waitForElementVisible(element1);
+			Thread.sleep(4000);
 			action.moveToElement(element1).build().perform();
+			//element1.click();
 			ExtentTestManager.logEventToReport("pass", element1, "Element moved successfully");
 			waitForElementVisible(element2);
 			Thread.sleep(4000);

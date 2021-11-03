@@ -262,16 +262,13 @@ public class ExtentTestManager{
 					System.out.println("element string" + element.toString());
 					
 					
-					ExtentTestManager.getTest().log(Status.PASS, "["+"<span style='font-size:100%;color:OliveDrab;'>"+element.toString()
+					ExtentTestManager.getTest().log(Status.PASS, "["+"<span style='font-size:100%;color:DarkGreen;'>"+element.toString()
 					.replaceAll(pattern1, "")
 							.replaceAll("ChromeDriver: chrome on WINDOWS", "")
-						//	.replaceAll("(", "")
-							//.replaceAll(")", "")
-							+"</span>"+"] - <span style='font-size:120%;color:blue;'>"+StringUtils.capitalize(description)+"</span>"+" [browser thread-id: "+Thread.currentThread().getId()+"]");
+							+"</span>"+"] - <span style='font-size:100%;color:blue;'>"+StringUtils.capitalize(description)+"</span>"+" [browser thread-id: "+Thread.currentThread().getId()+"]");
 					
 					
 					
-					//ExtentTestManager.getTest().log(Status.PASS, "["+"<span style='font-size:110%;color:OliveDrab;'>"+element.toString().replaceAll("ChromeDriver: chrome on WINDOWS", "").replaceAll(pattern, "").replaceAll("[ ()] ->", "")+"</span>"+"] - <span style='font-size:120%;color:blue;'>"+StringUtils.capitalize(description)+"</span>"+" [browser thread-id: "+Thread.currentThread().getId()+"]");
 				}
 				
 				else if(status.equalsIgnoreCase("fail")) {

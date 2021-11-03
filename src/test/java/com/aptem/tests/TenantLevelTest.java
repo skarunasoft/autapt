@@ -2,8 +2,11 @@ package com.aptem.tests;
 
 import org.testng.Assert;
 import org.testng.annotations.Test;
+
+import com.aptemui.base.ActionMethods;
 import com.aptemui.base.BaseDriver;
 import com.aptemui.extent.ExtentTestManager;
+import com.aptemui.utils.ExecuteQuery;
 import com.aptemui.utils.ResourceHandler;
 
 public class TenantLevelTest extends BaseDriver {
@@ -17,16 +20,10 @@ public class TenantLevelTest extends BaseDriver {
 	public void disableComplianceDocumentsAtTenantLevel() {
 		try {
 		signInPageObject.enterUsername(ResourceHandler.getPropValue("app_username"))
-		//  .clickNext()
-		 // .clickTenant()
-		  //.clickDefaultTenant()
-		 // .clickLaxmiTenant()
-		 // .clickNextAfterSelectedTenant()
 		  .enterPassword(ResourceHandler.getPropValue("app_password"))
 		  .clickSignInButton()
-		 // .searchTenant("laxmi")
-		 //.clickTenantSearchButton()
-		  .clickTenantURLLink("laxmi", "disable") 
+		  .navigateToLearnersAccount(ResourceHandler.getPropValue("account_level_url"))
+		  .compilanceDocumentVerification("disable") 
 		  .navigateToLearnersAccount(ResourceHandler.getPropValue("learner_url"))
 		  .signInLearnerAccount(
 				  ResourceHandler.getPropValue("learner_username"),
@@ -53,16 +50,10 @@ public class TenantLevelTest extends BaseDriver {
 	{
 		try {		
 		signInPageObject.enterUsername(ResourceHandler.getPropValue("app_username"))
-		//.clickNext()
-		  //.clickTenant()
-		 // .clickDefaultTenant()
-		 // .clickLaxmiTenant()
-		  //.clickNextAfterSelectedTenant()
 		  .enterPassword(ResourceHandler.getPropValue("app_password"))
 		  .clickSignInButton()
-		  //.searchTenant("laxmi")
-		  //.clickTenantSearchButton()
-		  .clickTenantURLLink("laxmi", "enable")
+		  .navigateToLearnersAccount(ResourceHandler.getPropValue("account_level_url"))
+		  .compilanceDocumentVerification("enable")
 		  .navigateToLearnersAccount(ResourceHandler.getPropValue("learner_url"))
 		  .signInLearnerAccount( ResourceHandler.getPropValue("learner_username"), ResourceHandler.getPropValue("learner_password"))
 		  .clickSideMenuAndLearningPlan()
@@ -85,31 +76,24 @@ public class TenantLevelTest extends BaseDriver {
 	{
 		
 		try {
-			//String name = ActionMethods.getSaltString();
-			// auto-test should be presented inside the comilance documents 
-			String name="auto-test";
+			String name = ActionMethods.getSaltString();
 			signInPageObject 
 			.enterUsername(ResourceHandler.getPropValue("app_username"))
-							//.clickNext()
-							 // .clickTenant() 
-							//  .clickDefaultTenant()
-							  //.clickLaxmiTenant()
-							  //.clickNextAfterSelectedTenant()
-							  .enterPassword(ResourceHandler.getPropValue("app_password"))
-							  .clickSignInButton()
-							 //.searchTenant("laxmi")
-							 // .clickTenantSearchButton()
-							  .clickTenantURLLinkForLearnerProgramme("laxmi", "enable", name)
-							  .navigateToLearnersAccount(ResourceHandler.getPropValue("laxmi_profile_url"))
-							  .clickRefreshIconOfComplianceDocuments()
-							  .clickUpdateForLearnersProgramme(name)
-							  .clickYesOfCommitmentStatement()
-							  .updateSignatureOfLearningUsingSQLQuery()
+			.enterPassword(ResourceHandler.getPropValue("app_password"))
+			.clickSignInButton()
+			 .navigateToLearnersAccount(ResourceHandler.getPropValue("account_level_url"))
+			  .clickTenantURLLinkForLearnerProgramme( "enable",
+			 //  ResourceHandler.getPropValue("client_level_url")+ExecuteQuery.getUserIdUsingDBQuery(),
+					  name)
+			  .navigateToLearnersAccount(ResourceHandler.getPropValue("laxmi_profile_url"))
+			  .clickRefreshIconOfComplianceDocuments()
+			  .clickCreateForLearnersProgramme(name)
+			  .clickYesOfCommitmentStatement()
+			 // .updateSignatureOfLearningUsingSQLQuery()
 			  .navigateToLearnersAccount(ResourceHandler.getPropValue("learner_url"))
 			  .signInLearnerAccount(
 					  ResourceHandler.getPropValue("learner_username"),
-					  ResourceHandler.getPropValue("learner_password")
-					  )
+					  ResourceHandler.getPropValue("learner_password") )
 			  .clickSideMenuAndLearningPlan()
 			  .verifyContentNOTDisplayed("Learning Plan")
 			  .clickSideMenuAndDocuments()

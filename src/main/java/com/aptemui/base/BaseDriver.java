@@ -75,7 +75,7 @@ public class BaseDriver {
 				chromeoptions.addArguments("--disable-features=VizDisplayCompositor");
 				chromeoptions.addArguments("--dns-prefetch-disable");
 				chromeoptions.addArguments("--disable-gpu");
-				chromeoptions.setPageLoadStrategy(PageLoadStrategy.NORMAL);
+				//chromeoptions.setPageLoadStrategy(PageLoadStrategy.NORMAL);
 				HashMap<String, Object> chromePrefs = new HashMap<String, Object>();
 				chromePrefs.put("hardware_acceleration_mode.enabled", false);
 				chromePrefs.put("download.prompt_for_download", false);
@@ -152,7 +152,7 @@ public class BaseDriver {
 		driver = WebDriverHandler.getInstance().getDriver();
 		//driver.manage().deleteAllCookies();
 		driver.manage().window().maximize();
-		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
 		driver.get(ResourceHandler.getPropValue("app_url"));
 		signInPageObject = new SignInPageObject(driver);
 	}
