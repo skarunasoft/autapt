@@ -3,36 +3,21 @@ package com.aptemui.utils;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.sql.Statement;
+
+import com.aptemui.extent.ExtentTestManager;
 
 
 
 public class ExecuteQuery {
 	
 	
-
-	public static void runquery() {
-		String host = "jdbc:sqlserver://uks-asql-mws-server-test.database.windows.net";
-		String u = "laxmimaddali";
-		String p = "kelNEBUxebr1";
-		
-		try {
-			Connection connection = DriverManager.getConnection(host, u, p);
-			Statement statement = connection.createStatement();
-			System.out.println("db test: "+statement.getConnection());
-			//statement.getConnection();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		
-		
-		
-	}
-	
-	
-	
-	
+/**
+ * 
+ * @param query
+ * @return
+ * @throws Exception
+ */
 	protected static ResultSet executeQueryAndReturnData(String query) throws Exception {
 		ResultSet rs = null;
 		Connection connection = null;
@@ -58,21 +43,47 @@ public class ExecuteQuery {
 		
 	}
 	
-	public static void read() throws Exception {
+	public static ResultSet updateSignerUsingDBQuery() throws Exception {
+		Statement getResult;
 		ResultSet rs = null;
-		
-		rs = executeQueryAndReturnData("update s set SignerId=null, SignerPosition=null" + 
+		String query = "update s set SignerId=null, SignerPosition=null" + 
 				"                from Orchard_Users_UserPartRecord" + 
 				"                 join WA_Pdf_Signature s on u.id=s.EntityId" + 
-				"                 where username='laxmiaptemautomation+1@gmail.com' and type in ('ApprenticeshipAgreement','Corndel-CommitmentStatement')");
+				"                 where username='laxmiaptemautomation+1@gmail.com' and type in ('ApprenticeshipAgreement','Corndel-CommitmentStatement')"
+				;
+				try {
+					rs=executeQueryAndReturnData(query);
+					getResult = rs.getStatement();
+					System.out.println("query execution status: "+ getResult);
+			ExtentTestManager.logEventToReport("pass", query, " ==> Query is executing" + getResult +" ==>Query result");
+		} catch (Exception e) {
+			ExtentTestManager.logEventToReport("fail", "Execution of query: ", e.getMessage());
+		}
+		return rs;
+
+	}
+	
+	public static String getUserIdUsingDBQuery() throws Exception
+	{
+		String id="";
+		ResultSet rs = null;
 		
-
+		 id = "select id from Orchard_Users_UserPartRecord where username='laxmiaptemautomation+1@gmail.com'";
+				try {
+			rs=executeQueryAndReturnData(id);
+			while (rs.next()) {
+				id = rs.getString("id");
+			}
+			
+			System.out.println("query execution status: "+ rs);
+			ExtentTestManager.logEventToReport("pass", id, " ==> Query is executing");
+		} catch (Exception e) {
+			ExtentTestManager.logEventToReport("fail", "Execution of query: ", e.getMessage());
+		}
+		return id;
 
 	}
 
-	public static void main(String[] args) throws Exception {
-		//read();
-		runquery();
-	}
+
 
 }

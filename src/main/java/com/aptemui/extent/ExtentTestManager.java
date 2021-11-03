@@ -255,9 +255,22 @@ public class ExtentTestManager{
 	     */
 	    public static synchronized void logEventToReport(String status, Object element, String description){
 			try {
+				String pattern = "[ChromeDriver: chrome on WINDOWS ("+"\\w{32}"+")] -> ";
+				String pattern1 = "\\w{32}";
+				
 				if(status.equalsIgnoreCase("pass")) {
-					ExtentTestManager.getTest().log(Status.PASS, "["+element.toString().replaceAll("ChromeDriver: chrome on WINDOWS", "")+"] - <span style='color:ForestGreen'>"+StringUtils.capitalize(description)+"</span>"+" [browser thread-id: "+Thread.currentThread().getId()+"]");
+					System.out.println("element string" + element.toString());
+					
+					
+					ExtentTestManager.getTest().log(Status.PASS, "["+"<span style='font-size:100%;color:DarkGreen;'>"+element.toString()
+					.replaceAll(pattern1, "")
+							.replaceAll("ChromeDriver: chrome on WINDOWS", "")
+							+"</span>"+"] - <span style='font-size:100%;color:blue;'>"+StringUtils.capitalize(description)+"</span>"+" [browser thread-id: "+Thread.currentThread().getId()+"]");
+					
+					
+					
 				}
+				
 				else if(status.equalsIgnoreCase("fail")) {
 					ExtentTestManager.getTest().log(Status.FAIL, "["+element+"] - <span style='color:red'>"+StringUtils.capitalize(description)+"</span>"+" [browser thread-id: "+Thread.currentThread().getId()+"]");
 					ExtentTestManager.getTest().fail("screenshot", MediaEntityBuilder.createScreenCaptureFromBase64String(getBase64Screenshot()).build());
